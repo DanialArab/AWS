@@ -3,7 +3,8 @@
 - CSV is the only data format supported by Gremlin
 - 
 
-First, I need to create a Neptune DB cluster. Some notes:
+## First, I need to create a Neptune DB cluster. Some notes:
+
 - Why tags:
 I don't strictly need tags on my Amazon Neptune database, but they are highly recommended for the following reasons:
 
@@ -43,6 +44,9 @@ Some orgs enforce tagging to meet internal governance or external compliance sta
         
         Name	entity-resolution-db
 
+## Second I need to set up a security group for the Neptune DB
+
+I need an appropriate security group with a name of something like NeptuneAccess with an inbound rule allowing TCP traffic on port 8182. A quick reminder: Outbound traffic is all allowed by default in the security group. 
 
 Reference: 
 
