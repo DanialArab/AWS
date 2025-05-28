@@ -7,7 +7,6 @@ First, I need to create a Neptune DB cluster. Some notes:
 - Why tags:
 I don't strictly need tags on my Amazon Neptune database, but they are highly recommended for the following reasons:
 
-✅ Why Use Tags on a Neptune Database
 1. Cost Allocation
 Tags help you track AWS costs per project, team, environment, or feature.
 
