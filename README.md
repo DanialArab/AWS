@@ -54,7 +54,7 @@ I do need an appropriate IAM role which allows me call different services SageMa
 
 ## Load data into the Neptune DB
 
-I need to create an Endpoint as a middle man connecting Neptune DB and S3 within VPC. So I need to create one. 
+I need to create an Endpoint as a middle-man connecting Neptune DB within a VPC and S3. So I need to create one. 
 
 Reference: 
 
