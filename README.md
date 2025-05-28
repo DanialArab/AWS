@@ -11,7 +11,8 @@ I don't strictly need tags on my Amazon Neptune database, but they are highly re
 Tags help you track AWS costs per project, team, environment, or feature.
 
 Example: If multiple teams use different Neptune clusters, tagging helps break down the bill:
-Environment=dev, Team=data-science, Project=entity-resolution.
+
+    Environment=dev, Team=data-science, Project=entity-resolution.
 
 2. Resource Organization
 Easily filter and find resources in the AWS Console or CLI using tags.
