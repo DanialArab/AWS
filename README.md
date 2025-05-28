@@ -8,6 +8,7 @@ First, I need to create a Neptune DB cluster. Some notes:
 I don't strictly need tags on my Amazon Neptune database, but they are highly recommended for the following reasons:
 
 1. Cost Allocation
+
 Tags help you track AWS costs per project, team, environment, or feature.
 
 Example: If multiple teams use different Neptune clusters, tagging helps break down the bill:
@@ -15,26 +16,32 @@ Example: If multiple teams use different Neptune clusters, tagging helps break d
     Environment=dev, Team=data-science, Project=entity-resolution.
 
 2. Resource Organization
+
 Easily filter and find resources in the AWS Console or CLI using tags.
 
 Makes your infrastructure more manageable at scale.
 
 3. Access Control (via IAM)
+
 You can use tag-based conditions in IAM policies to restrict who can modify or delete specific Neptune databases.
 
 Example: Only users with Project=analytics tag access can touch databases tagged that way.
 
 4. Automation
+
 Tags can trigger lifecycle automation (e.g., backups, shutdowns, alerts).
 
 Example: Auto-delete dev resources older than 30 days if tagged Environment=dev.
 
 5. Compliance and Auditing
+
 Some orgs enforce tagging to meet internal governance or external compliance standards.
 
 📝 Example Tags for a Neptune Cluster
-Key	Value
-Name	entity-resolution-db
+
+        Key	Value
+        
+        Name	entity-resolution-db
 
 
 Reference: https://www.youtube.com/playlist?list=PLd13Ui6RDb8m5X15ZrQd8XuOXV6RZbPSO 
