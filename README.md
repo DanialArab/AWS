@@ -48,6 +48,10 @@ Some orgs enforce tagging to meet internal governance or external compliance sta
 
 I need an appropriate security group with a name of something like NeptuneAccess with an inbound rule allowing TCP traffic on port 8182. A quick reminder: Outbound traffic is all allowed by default in the security group. 
 
+## Notebooks in Neptune
+
+I do need an appropriate IAM role which allows me call different services SageMaker, Bedrock, and S3. It seems that Notebooks in Neptune will be re-directed to SageMaker and from SageMaker to our it'll be re-directed to the actual Jupyter Notebook. 
+
 Reference: 
 
 https://www.youtube.com/playlist?list=PLd13Ui6RDb8m5X15ZrQd8XuOXV6RZbPSO 
