@@ -62,3 +62,5 @@ https://www.youtube.com/playlist?list=PLd13Ui6RDb8m5X15ZrQd8XuOXV6RZbPSO
 
 https://docs.aws.amazon.com/neptune/latest/userguide/feature-overview-db-clusters.html
 
+https://www.youtube.com/watch?v=Y42OwmUF23s&list=PLd13Ui6RDb8m5X15ZrQd8XuOXV6RZbPSO&index=5
+
