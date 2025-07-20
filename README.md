@@ -161,17 +161,18 @@ AWS Neptune Analytics a graph DB engine which stores large datasets in memory pr
 <a name="11"></a>
 # Step function 
 
-AWS Step Functions is a service that allows you to build serverless visual workflows to orchestrate your Lambda functions. It is considered one of the serverless offerings within AWS.
+AWS Step Functions is a service that allows us to build serverless visual workflows to orchestrate our Lambda functions. It is considered one of the serverless offerings within AWS.
 Key aspects and features of AWS Step Functions include:
-• Orchestration of Lambda Functions: Its primary purpose is to help you coordinate and manage multiple AWS Lambda functions, defining the order in which they run and how they interact.
+• Orchestration of Lambda Functions: Its primary purpose is to help us coordinate and manage multiple AWS Lambda functions, defining the order in which they run and how they interact.
 • Workflow Capabilities: Step Functions support various workflow patterns, such as sequencing (running functions one after another), parallel execution, handling conditions (logic branching), managing timeouts, and implementing robust error handling.
-• Integrations: Beyond Lambda, Step Functions can integrate with a variety of other services and resources, including EC2, ECS, on-premises servers, API Gateway, and SQS queues. This broad integration capability allows it to orchestrate complex distributed applications.
+• Integrations: Beyond Lambda, Step Functions can integrate with a variety of other services and resources, including EC2, ECS, on-premises servers, API Gateway, SQS queues, ... This broad integration capability allows it to orchestrate complex distributed applications.
 • Human Approval: It offers the possibility of implementing human approval features within a workflow, allowing for manual interventions or sign-offs at specific stages.
 • Use Cases: Step Functions are suitable for a wide range of applications that involve multiple steps or stages, such as order fulfilment processes, data processing pipelines, web applications, and any general workflow that benefits from visual orchestration.
+
 Think of AWS Step Functions like a digital conductor for an orchestra of cloud services. Just as a conductor directs musicians to play their parts in sequence, in parallel, or based on specific cues, Step Functions directs various AWS services (like Lambda functions) through a predefined workflow, ensuring each step is executed correctly, handling any errors, and allowing for complex logic and integrations. This allows you to build sophisticated, multi-step applications without manually managing the interactions between each component.
 
 
-<a name="11"></a>
+<a name="?"></a>
 ## Lambda 
 
 
