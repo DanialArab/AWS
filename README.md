@@ -10,7 +10,7 @@
    5. [Neptune Workbench Notebook](#8)
    6. [AWS Neptune Analytics](#9)
 2. [Serverless](#10)
-   1. [Step function](#11)
+   1. [Step functions](#11)
 
 
 <a name="1"></a>
@@ -159,7 +159,7 @@ AWS Neptune Analytics a graph DB engine which stores large datasets in memory pr
 # Serverless 
 
 <a name="11"></a>
-## Step function 
+## Step functions 
 
 AWS Step Functions is a service that allows us to build serverless visual workflows to orchestrate our Lambda functions. It is considered one of the serverless offerings within AWS.
 Key aspects and features of AWS Step Functions include:
