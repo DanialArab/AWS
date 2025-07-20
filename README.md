@@ -7,7 +7,7 @@ Amazon Web Services
    4. [How to load data](#5)
       1. [Bulk loading](#6)
       2. [Small loads using Query Languages](#7)
-
+   5. [Neptune Workbench Notebook](#8)
 
 
 <a name="1"></a>
@@ -90,7 +90,18 @@ Using query languages directly interacts with the Neptune database endpoint, whi
 
 Neptune supports two primary query languages for graph data manipulation: **Gremlin** and **SPARQL**.
 
+<a name="8"></a>
+## Neptune Workbench Notebook
 
+<a href="https://docs.aws.amazon.com/neptune/latest/userguide/graph-notebooks.html#graph-notebooks-workbench">Workbench Notebook</a> is an IDE managed by SageMaker, which is tailored specifically for Neptune, offering a convenient environment to load data, visualize, analyze, and run Gremlin or SPARQL queries. It is a suggested method for both bulk and small loads because:
+
+for small, interactive, or incremental loads, we can use the direct query language magics like %%gremlin, %%sparql, %%oc
+
+for large loads, we can use boto3 to call Neptune Bulk Loader API from within a notebook cell
+
+We can load data into Neptune without using the Workbench Notebook by utilizing boto3 and initiating a bulk loader job directly. However, the Workbench Notebook offers several advantages: it provides graph and query visualizations, like the one in the following figure, comes pre-configured with libraries such as Gremlin, SPARQL, boto3, and requires zero setup. Also, it comes with sample applications, tutorials, and the code snippets. Also, graph-explorer is automatically deployed with the Workbench Notebook. These features can make it a bit easier to get started. Here is the link to their GitHub page.
+
+This link from AWS could be useful to get started with the Workbench and Neptune (the recorded screen quality is not perfect though).
 
 
 - CSV is the only data format supported by Gremlin
