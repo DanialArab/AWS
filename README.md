@@ -16,10 +16,9 @@ We can create a Neptune Cluster by
 - using an AWS CloudFormation template or
 - manually using the AWS Management Console
 
-
 If we use a **<a href="https://docs.aws.amazon.com/neptune/latest/userguide/get-started-create-cluster.html">CloudFormation template</a>**, it creates all the required resources for us, without having to do everything by hand.
 
-The required steps to create a Neptune Cluster using the Console can be found here. Here is the summary of the settings we would like to change, while leaving others as default:
+The required steps to create a Neptune Cluster using the Console can be found <a href="https://docs.aws.amazon.com/neptune/latest/userguide/manage-console-launch-console.html">here</a> . Here is the summary of the settings we would like to change, while leaving others as default:
 
 Cluster type: Provisioned or Serverless
 
