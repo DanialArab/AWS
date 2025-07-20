@@ -1,4 +1,46 @@
+Amazon Web Services
+
+1. [AWS Neptune](#1)
+   1. [How to set up a Neptune Cluster](#2)
+
+
+
+<a name="1"></a>
 # AWS Neptune
+
+Amazon's fully managed graph database service. AWS Neptune abstracts away the underlying infrastructure, allowing us to focus on data modeling, ingestion, and query logic—without the overhead of managing servers, scaling, or patching. 
+
+<a name="2"></a>
+## How to set up a Neptune Cluster
+We can create a Neptune Cluster by
+- using an AWS CloudFormation template or
+- manually using the AWS Management Console
+
+
+If we use a **<a href="https://docs.aws.amazon.com/neptune/latest/userguide/get-started-create-cluster.html">CloudFormation template</a>**, it creates all the required resources for us, without having to do everything by hand.
+
+The required steps to create a Neptune Cluster using the Console can be found here. Here is the summary of the settings we would like to change, while leaving others as default:
+
+Cluster type: Provisioned or Serverless
+
+Templates: Production vs. Development and testing 
+
+DB Cluster name 
+
+Create storage configurations: Standard vs. I/O-Optimized 
+
+Instance type: Memory optimized vs. Burstable classes
+
+Availability and Durability: whether or not we want to create read replica in different availability zone (AZ)
+
+Network and security: we need to specify the VPC in which the Cluster will be created (we do have a specific VPC named ml-vpc, you can find its ID in your AWS console in MachineLearning-Dev). Note that after a database is created, we can't change the VPC selection. We also need to select the subnet groups associated with our VPC and also the VPC security groups.
+
+Tags
+
+Notebook configuration: this will bug out and you will get an error, so don’t worry about this while creating your Cluster, we will take care of this later in this document. 
+
+A side note useful for production: We can also create Neptune Global DB spanning across multiple regions enabling low-latency global reads and providing fast recovery in the rare case where an outage affects an entire AWS Region.
+
 
 - CSV is the only data format supported by Gremlin
 - 
