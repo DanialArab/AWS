@@ -2,6 +2,8 @@ Amazon Web Services
 
 1. [AWS Neptune](#1)
    1. [How to set up a Neptune Cluster](#2)
+   2. [How to interact with our Neptune Cluster](#3)
+   3. [Internet access using Internet Gateway, NAT Gateway, or Endpoints](#4)
 
 
 
@@ -31,6 +33,29 @@ The required steps to create a Neptune Cluster using the Console can be found <a
 - Notebook configuration: this will bug out and you will get an error, so we don’t need to worry about this while creating your Cluster, we will take care of this later in this document. 
 
 A side note useful for production: We can also create <a href="https://docs.aws.amazon.com/neptune/latest/userguide/neptune-global-database.html">Neptune Global DB spanning across multiple regions</a> enabling low-latency global reads and providing fast recovery in the rare case where an outage affects an entire AWS Region.
+
+
+<a name="3"></a>
+## How to interact with our Neptune Cluster
+
+After creating our cluster, we do need to interact with it to:
+
+- load in the data
+- perform analytics
+- query the database 
+
+Preferably, our S3 bucket, where our data to be loaded into Neptune Cluster live, should be in the **same region** as our Neptune Cluster. If the bucket is in a different region, we need cross-region access that always go over the public internet. Also VPC endpoints cannot be created for a bucket sitting in a different region. 
+
+Amazon S3 is a global service and exists outside our VPC. The access to S3 objects is strictly controlled through bucket policies and IAM permissions. So in order to access S3 objects we need:
+
+- appropriate permissions — the IAM role attached to Neptune (or its associated service) must have permissions to access the specific S3 bucket or object, and
+- internet access 
+
+<a name="4"></a>
+## Internet access using Internet Gateway, NAT Gateway, or Endpoints
+
+As mentioned, our Neptune cluster lives inside a VPC, which by default does not have internet access: therefore, it cannot access resources like Amazon S3. So we do need to explicitly configure internet access by using an Internet Gateway (IGW), NAT Gateway, or a VPC Endpoint (Gateway is a preferred endpoint vs interface endpoints for S3 and DynamoDB).
+
 
 
 - CSV is the only data format supported by Gremlin
