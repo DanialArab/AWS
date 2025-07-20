@@ -9,8 +9,7 @@
       2. [Small loads using Query Languages](#7)
    5. [Neptune Workbench Notebook](#8)
    6. [AWS Neptune Analytics](#9)
-2. [Serverless](#10)
-   1. [Lambda](#11)
+
 
 <a name="1"></a>
 # AWS Neptune
