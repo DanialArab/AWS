@@ -20,25 +20,17 @@ If we use a **<a href="https://docs.aws.amazon.com/neptune/latest/userguide/get-
 
 The required steps to create a Neptune Cluster using the Console can be found <a href="https://docs.aws.amazon.com/neptune/latest/userguide/manage-console-launch-console.html">here</a> . Here is the summary of the settings we would like to change, while leaving others as default:
 
-Cluster type: Provisioned or Serverless
+- Cluster type: Provisioned or Serverless
+- Templates: Production vs. Development and testing
+- DB Cluster name
+- Create storage configurations: Standard vs. I/O-Optimized
+- Instance type: Memory optimized vs. Burstable classes
+- Availability and Durability: whether or not we want to create read replica in different availability zone (AZ)
+- Network and security: we need to specify the VPC in which the Cluster will be created. Note that after a database is created, we can't change the VPC selection. We also need to select the subnet groups associated with our VPC and also the VPC security groups.
+- Tags
+- Notebook configuration: this will bug out and you will get an error, so we don’t need to worry about this while creating your Cluster, we will take care of this later in this document. 
 
-Templates: Production vs. Development and testing 
-
-DB Cluster name 
-
-Create storage configurations: Standard vs. I/O-Optimized 
-
-Instance type: Memory optimized vs. Burstable classes
-
-Availability and Durability: whether or not we want to create read replica in different availability zone (AZ)
-
-Network and security: we need to specify the VPC in which the Cluster will be created (we do have a specific VPC named ml-vpc, you can find its ID in your AWS console in MachineLearning-Dev). Note that after a database is created, we can't change the VPC selection. We also need to select the subnet groups associated with our VPC and also the VPC security groups.
-
-Tags
-
-Notebook configuration: this will bug out and you will get an error, so don’t worry about this while creating your Cluster, we will take care of this later in this document. 
-
-A side note useful for production: We can also create Neptune Global DB spanning across multiple regions enabling low-latency global reads and providing fast recovery in the rare case where an outage affects an entire AWS Region.
+A side note useful for production: We can also create <a href="https://docs.aws.amazon.com/neptune/latest/userguide/neptune-global-database.html">Neptune Global DB spanning across multiple regions</a> enabling low-latency global reads and providing fast recovery in the rare case where an outage affects an entire AWS Region.
 
 
 - CSV is the only data format supported by Gremlin
