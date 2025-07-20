@@ -38,6 +38,45 @@ The required steps to create a Neptune Cluster using the Console can be found <a
 
 A side note useful for production: We can also create <a href="https://docs.aws.amazon.com/neptune/latest/userguide/neptune-global-database.html">Neptune Global DB spanning across multiple regions</a> enabling low-latency global reads and providing fast recovery in the rare case where an outage affects an entire AWS Region.
 
+A side note on why we need tags:
+
+QWe don't strictly need tags on my Amazon Neptune database, but they are highly recommended for the following reasons:
+
+- Cost Allocation:
+
+Tags help you track AWS costs per project, team, environment, or feature.
+
+Example: If multiple teams use different Neptune clusters, tagging helps break down the bill:
+
+    Environment=dev, Team=data-science, Project=entity-resolution.
+
+- Resource Organization:
+
+Easily filter and find resources in the AWS Console or CLI using tags.
+
+Makes your infrastructure more manageable at scale.
+
+- Access Control (via IAM):
+
+We can use tag-based conditions in IAM policies to restrict who can modify or delete specific Neptune databases.
+
+Example: Only users with Project=analytics tag access can touch databases tagged that way.
+
+- Automation:
+
+Tags can trigger lifecycle automation (e.g., backups, shutdowns, alerts).
+
+Example: Auto-delete dev resources older than 30 days if tagged Environment=dev.
+
+- Compliance and Auditing:
+
+Some orgs enforce tagging to meet internal governance or external compliance standards.
+
+Example Tags for a Neptune Cluster
+
+        Key	Value
+        
+        Name	my-db
 
 <a name="3"></a>
 ## How to interact with our Neptune Cluster
@@ -113,52 +152,6 @@ AWS Neptune Analytics a graph DB engine which stores large datasets in memory pr
 - libraries of optimized graph analytic algorithms,
 - low-latency graph queries, and
 - vector search capabilities within graph traversals.
-
-
-- CSV is the only data format supported by Gremlin
-- 
-
-## First, I need to create a Neptune DB cluster. Some notes:
-
-- Why tags:
-I don't strictly need tags on my Amazon Neptune database, but they are highly recommended for the following reasons:
-
-1. Cost Allocation
-
-Tags help you track AWS costs per project, team, environment, or feature.
-
-Example: If multiple teams use different Neptune clusters, tagging helps break down the bill:
-
-    Environment=dev, Team=data-science, Project=entity-resolution.
-
-2. Resource Organization
-
-Easily filter and find resources in the AWS Console or CLI using tags.
-
-Makes your infrastructure more manageable at scale.
-
-3. Access Control (via IAM)
-
-You can use tag-based conditions in IAM policies to restrict who can modify or delete specific Neptune databases.
-
-Example: Only users with Project=analytics tag access can touch databases tagged that way.
-
-4. Automation
-
-Tags can trigger lifecycle automation (e.g., backups, shutdowns, alerts).
-
-Example: Auto-delete dev resources older than 30 days if tagged Environment=dev.
-
-5. Compliance and Auditing
-
-Some orgs enforce tagging to meet internal governance or external compliance standards.
-
-📝 Example Tags for a Neptune Cluster
-
-        Key	Value
-        
-        Name	entity-resolution-db
-
 
 
 
