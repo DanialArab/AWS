@@ -162,7 +162,7 @@ Some orgs enforce tagging to meet internal governance or external compliance sta
 
 
 
-**Reference: **
+**Reference:**
 
 AWS Neptune:
 
