@@ -8,6 +8,7 @@ Amazon Web Services
       1. [Bulk loading](#6)
       2. [Small loads using Query Languages](#7)
    5. [Neptune Workbench Notebook](#8)
+   6. [AWS Neptune Analytics](#9)
 
 
 <a name="1"></a>
@@ -104,6 +105,15 @@ We can load data into Neptune without using the Workbench Notebook by utilizing 
 
 This <a href="https://aws.amazon.com/awstv/watch/bf4e7142537/">link </a> from AWS could be useful to get started with the Workbench and Neptune (the recorded screen quality is not perfect, though).
 
+<a name="9"></a>
+## AWS Neptune Analytics
+
+AWS Neptune Analytics a graph DB engine which stores large datasets in memory providing a quick way to analyze graph data. It supports:
+
+- libraries of optimized graph analytic algorithms,
+- low-latency graph queries, and
+- vector search capabilities within graph traversals.
+
 
 - CSV is the only data format supported by Gremlin
 - 
@@ -149,23 +159,14 @@ Some orgs enforce tagging to meet internal governance or external compliance sta
         
         Name	entity-resolution-db
 
-## Second I need to set up a security group for the Neptune DB
 
-I need an appropriate security group with a name of something like NeptuneAccess with an inbound rule allowing TCP traffic on port 8182. A quick reminder: Outbound traffic is all allowed by default in the security group. 
 
-## Notebooks in Neptune
 
-I do need an appropriate IAM role which allows me call different services SageMaker, Bedrock, and S3. It seems that Notebooks in Neptune will be re-directed to SageMaker and from SageMaker to our it'll be re-directed to the actual Jupyter Notebook. 
+**Reference: **
 
-## Load data into the Neptune DB
-
-I need to create an Endpoint as a middle-man connecting Neptune DB within a VPC and S3. So I need to create one, I think Gateway endpoint is the best compared to the Interface endpoint since it is free for S3 and DynamoDB.
-
-Reference: 
+AWS Neptune:
 
 https://www.youtube.com/playlist?list=PLd13Ui6RDb8m5X15ZrQd8XuOXV6RZbPSO 
-
 https://docs.aws.amazon.com/neptune/latest/userguide/feature-overview-db-clusters.html
-
 https://www.youtube.com/watch?v=Y42OwmUF23s&list=PLd13Ui6RDb8m5X15ZrQd8XuOXV6RZbPSO&index=5
 
