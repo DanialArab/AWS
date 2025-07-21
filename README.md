@@ -18,7 +18,7 @@
       5. [Cold Start and SnapStart](#16)
       6. [Lambda in a VPC](#17)
       7. [Customization At The Edge](#18)
-         1. [CloudF[ront Functions](#19)
+         1. [CloudFront Functions](#19)
          2. [Lambda@Edge](#20)
    2. [Step functions](#21)
 
