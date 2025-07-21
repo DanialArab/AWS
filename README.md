@@ -1,4 +1,4 @@
-# Amazon Web Services
+# Amazon Web Services 
 
 In this repo, I document my understanding of AWS after getting the following certificates:
 - AWS Solution Architect Associate (Valid until: )
