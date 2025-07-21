@@ -11,31 +11,16 @@
    6. [AWS Neptune Analytics](#9)
 2. [Serverless](#10)
    1. [Lambda](#11)
-   1. [Step functions](#12)
-
-
-
-<a name="11"></a>
-## Lambda 
-<a name="12"></a>
-### Core Concepts and Benefits of AWS Lambda
-
-<a name="13"></a>
-### Lambda Capabilities and Integrations
-<a name="14"></a>
-### Use Cases:
-<a name="15"></a>
-### Lambda Limits
-<a name="16"></a>
-### Cold Start and SnapStart
-<a name="17"></a>
-### Lambda in a VPC
-<a name="18"></a>
-### Customization At The Edge
-<a name="19"></a>
-#### CloudFront Functions:
-<a name="20"></a>
-#### Lambda@Edge
+      1. [Core Concepts and Benefits of AWS Lambda](#12)
+      2. [Lambda Capabilities and Integrations](#13)
+      3. [Use Cases](#14)
+      4. [Lambda Limits](#15)
+      5. [Cold Start and SnapStart](#16)
+      6. [Lambda in a VPC](#17)
+      7. [Customization At The Edge](#18)
+         1. [CloudF[ront Functions](#19)
+         2. [Lambda@Edge](#20)
+   2. [Step functions](#21)
 
 
 <a name="1"></a>
