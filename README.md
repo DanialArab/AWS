@@ -177,13 +177,16 @@ Serverless in AWS:
 <a name="11"></a>
 ## Lambda 
 
-AWS Lambda is a serverless compute service that allows developers to deploy code as functions without having to manage servers. It was a pioneer in the serverless paradigm, which now encompasses various managed services like databases, messaging, and storage. Serverless does not mean there are no servers, but rather that users do not need to manage, provision, or even see them.
-Here's a comprehensive summary of AWS Lambda based on the provided sources:
-Core Concepts and Benefits of AWS Lambda
-• Virtual Functions, No Server Management: Unlike virtual servers (e.g., Amazon EC2) which are continuously running and require intervention for scaling, Lambda functions are "virtual functions" where there are no servers to manage.
-• On-Demand Execution: Lambda functions run on-demand and are limited by time (short executions). This contrasts with EC2 instances which are continuously running.
-• Automated Scaling: Scaling in Lambda is automated, removing the need for manual intervention to add or remove servers.
-• Easy Pricing: You pay per request and compute time. There's a free tier that includes 1,000,000 AWS Lambda requests and 400,000 GBs of compute time. After the free tier, it costs $0.20 per 1 million requests and $1.00 for 600,000 GB-seconds of compute time. Running AWS Lambda is generally considered "very cheap".
+AWS Lambda is a serverless compute service that allows developers to deploy code as functions without having to manage servers. It was a pioneer in the serverless paradigm, which now encompasses various managed services like databases, messaging, and storage.
+
+Here's a comprehensive summary of AWS Lambda:
+
+### Core Concepts and Benefits of AWS Lambda
+
+- **Virtual Functions, No Server Management**: Unlike virtual servers (e.g., Amazon EC2) which are continuously running and require intervention for scaling, Lambda functions are "virtual functions" where there are no servers to manage.
+- **On-Demand Execution**: Lambda functions run on-demand and are limited by time (short executions). This contrasts with EC2 instances which are continuously running.
+- **Automated Scaling**: Scaling in Lambda is automated, removing the need for manual intervention to add or remove servers.
+- **Easy Pricing**: You pay per request and compute time. There's a free tier that includes 1,000,000 AWS Lambda requests and 400,000 GBs of compute time. After the free tier, it costs $0.20 per 1 million requests and $1.00 for 600,000 GB-seconds of compute time. Running AWS Lambda is generally considered "very cheap".
 • Resource Allocation: You can easily get more resources per function, with up to 10GB of RAM, and increasing RAM also improves CPU and network performance.
 Lambda Capabilities and Integrations
 • Language Support: Lambda supports many programming languages, including Node.js (JavaScript), Python, Java (Java 8 compatible), C# (.NET Core), Golang, C# / Powershell, and Ruby. It also offers a Custom Runtime API for community-supported languages like Rust.
