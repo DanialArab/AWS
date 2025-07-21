@@ -181,23 +181,31 @@ AWS Lambda is a serverless compute service that allows developers to deploy code
 
 Here's a comprehensive summary of AWS Lambda:
 
+<a name="12"></a>
 ### Core Concepts and Benefits of AWS Lambda
 
 - **Virtual Functions, No Server Management**: Unlike virtual servers (e.g., Amazon EC2) which are continuously running and require intervention for scaling, Lambda functions are "virtual functions" where there are no servers to manage.
 - **On-Demand Execution**: Lambda functions run on-demand and are limited by time (short executions). This contrasts with EC2 instances which are continuously running.
 - **Automated Scaling**: Scaling in Lambda is automated, removing the need for manual intervention to add or remove servers.
-- **Easy Pricing**: You pay per request and compute time. There's a free tier that includes 1,000,000 AWS Lambda requests and 400,000 GBs of compute time. After the free tier, it costs $0.20 per 1 million requests and $1.00 for 600,000 GB-seconds of compute time. Running AWS Lambda is generally considered "very cheap".
-• Resource Allocation: You can easily get more resources per function, with up to 10GB of RAM, and increasing RAM also improves CPU and network performance.
-Lambda Capabilities and Integrations
-• Language Support: Lambda supports many programming languages, including Node.js (JavaScript), Python, Java (Java 8 compatible), C# (.NET Core), Golang, C# / Powershell, and Ruby. It also offers a Custom Runtime API for community-supported languages like Rust.
-• Container Image Support: Lambda can use Container Images, provided the image implements the Lambda Runtime API. For arbitrary Docker images, ECS / Fargate is preferred.
-• Extensive AWS Integration: Lambda is integrated with the whole AWS suite of services. Key integrations include CloudWatch Logs, SNS, Cognito, SQS, S3, Kinesis, API Gateway, DynamoDB, CloudFront, CloudWatch Events, and EventBridge.
-• Monitoring: Easy monitoring is available through AWS CloudWatch.
-• Use Cases:
-    ◦ Serverless Thumbnail Creation: A new image in S3 can trigger an AWS Lambda function to create a thumbnail, which is then pushed back to S3, with metadata stored in DynamoDB.
-    ◦ Serverless CRON Job: CloudWatch Events (or EventBridge) can trigger an AWS Lambda function to perform a task periodically, for example, every hour.
-    ◦ Serverless APIs: API Gateway can expose REST APIs backed by AWS Lambda and DynamoDB, forming a serverless API layer for applications.
-    ◦ Workflow Orchestration: AWS Step Functions can orchestrate Lambda functions to build serverless visual workflows, supporting sequencing, parallel execution, conditions, timeouts, and error handling.
+- **Easy Pricing**: You pay per request and compute time. There's a free tier that includes 1,000,000 AWS Lambda requests and 400,000 GBs of compute time. After the free tier, it costs $0.20 per 1 million requests and $1.00 for 600,000 GB-seconds of compute time. Running AWS Lambda is generally considered **very cheap**.
+- **Resource Allocation**: You can easily get more resources per function, with up to 10GB of RAM, and **increasing RAM also improves CPU and network performance.**
+
+<a name="13"></a>
+### Lambda Capabilities and Integrations
+
+- **Language Support**: Lambda supports many programming languages, including Node.js (JavaScript), Python, Java (Java 8 compatible), C# (.NET Core), Golang, C# / Powershell, and Ruby. It also offers a Custom Runtime API for community-supported languages like Rust.
+- **Container Image Support**: Lambda can use Container Images, provided the image implements the Lambda Runtime API. For arbitrary Docker images, ECS / Fargate is preferred.
+- **Extensive AWS Integration**: Lambda is integrated with the whole AWS suite of services. Key integrations include CloudWatch Logs, SNS, Cognito, SQS, S3, Kinesis, API Gateway, DynamoDB, CloudFront, CloudWatch Events, and EventBridge.
+- **Monitoring**: Easy monitoring is available through AWS CloudWatch.
+
+<a name="14"></a>
+### Use Cases:
+
+ ◦ Serverless Thumbnail Creation: A new image in S3 can trigger an AWS Lambda function to create a thumbnail, which is then pushed back to S3, with metadata stored in DynamoDB.
+ ◦ Serverless CRON Job: CloudWatch Events (or EventBridge) can trigger an AWS Lambda function to perform a task periodically, for example, every hour.
+ ◦ Serverless APIs: API Gateway can expose REST APIs backed by AWS Lambda and DynamoDB, forming a serverless API layer for applications.
+ ◦ Workflow Orchestration: AWS Step Functions can orchestrate Lambda functions to build serverless visual workflows, supporting sequencing, parallel execution, conditions, timeouts, and error handling.
+ 
 Lambda Limits
 • Execution Limits:
     ◦ Memory allocation: 128 MB to 10GB (in 1 MB increments).
