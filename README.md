@@ -14,6 +14,30 @@
    1. [Step functions](#12)
 
 
+
+<a name="11"></a>
+## Lambda 
+<a name="12"></a>
+### Core Concepts and Benefits of AWS Lambda
+
+<a name="13"></a>
+### Lambda Capabilities and Integrations
+<a name="14"></a>
+### Use Cases:
+<a name="15"></a>
+### Lambda Limits
+<a name="16"></a>
+### Cold Start and SnapStart
+<a name="17"></a>
+### Lambda in a VPC
+<a name="18"></a>
+### Customization At The Edge
+<a name="19"></a>
+#### CloudFront Functions:
+<a name="20"></a>
+#### Lambda@Edge
+
+
 <a name="1"></a>
 # AWS Neptune
 
@@ -233,28 +257,40 @@ Here's a comprehensive summary of AWS Lambda:
 - **Default Deployment**: By default, Lambda functions are launched outside our own VPC (in an AWS-owned VPC), meaning they cannot access resources within our VPC (such as RDS, ElastiCache, internal ELB).
 - **Accessing VPC Resources**: To enable a Lambda function to access resources in our VPC, we must define the VPC ID, subnets, and security groups. Lambda will then create an Elastic Network Interface (ENI) in our specified subnets, allowing it to communicate with our VPC resources like Amazon RDS.
 - **RDS Proxy Integration:** If Lambda functions directly access a database, they might open too many connections under high load. RDS Proxy helps solve this by pooling and sharing DB connections, improving scalability, availability (reducing failover time), and security (enforcing IAM authentication). Lambda functions using RDS Proxy must be deployed in our VPC because RDS Proxy is never publicly accessible.
-- **Invoking Lambda from RDS & Aurora**: Lambda functions can be invoked from within our DB instance (supported for RDS for PostgreSQL and Aurora MySQL) to process data events. This requires allowing outbound traffic from our DB instance to Lambda (e.g., via Public, NAT GW, VPC Endpoints) and setting up necessary IAM permissions.
+- **Invoking Lambda from RDS & Aurora**: Lambda functions can be invoked from within our DB instance (supported for RDS for PostgreSQL and Aurora MySQL) to process data events. This requires allowing outbound traffic from our DB instance to Lambda (e.g., via Public, NAT GW, VPC Endpoints) and setting up necessary IAM permissions. DB instance must have the required permissions to invoke the Lambda function (Lambda Resource-based Policy & IAM Policy)
 
-Lambda@Edge and CloudFront Functions (Edge Computing)
-Edge Functions: These are code snippets you write and attach to CloudFront distributions, running close to your users to minimise latency. They are fully serverless and you only pay for what you use.
-• CloudFront Functions:
-    ◦ Lightweight JavaScript functions for high-scale, latency-sensitive CDN customisations.
-    ◦ Offer sub-millisecond startup times and support millions of requests per second.
-    ◦ Used to change Viewer Requests and Responses (after CloudFront receives a request from a viewer, and before CloudFront forwards the response to the viewer).
-    ◦ Managed natively within CloudFront.
-    ◦ Have limits: <1ms max execution time, 2MB max memory, 10KB total package size. No network or file system access, no access to request body.
-    ◦ Use cases: Cache key normalization, header manipulation, URL rewrites/redirects, request authentication/authorization (e.g., JWT validation).
-• Lambda@Edge:
-    ◦ Lambda functions written in Node.js or Python.
-    ◦ Scales to thousands of requests per second.
-    ◦ Can change Viewer Request/Response and Origin Request/Response (before forwarding to the origin and after receiving response from origin).
-    ◦ Functions are authored in us-east-1 and then replicated globally by CloudFront.
-    ◦ Have higher limits: 5-10 seconds max execution time, 128MB up to 10GB max memory, 1MB-50MB total package size. Allows network and file system access, and access to the request body.
-    ◦ Use cases: Longer execution times, adjustable CPU/memory, code dependent on third-party libraries (e.g., AWS SDK), network access to external services, file system access, or access to HTTP request body.
+<a name="18"></a>
+### Customization At The Edge
+
+Edge Functions: These are code snippets you write and attach to CloudFront distributions, running close to your users to minimise latency. They are fully serverless and you only pay for what you use. CloudFront provides two types of Edge functions: 
+- CloudFront Functions &
+- Lambda@Edge
+
+Use case: Customize the CDN content
+
+<a name="19"></a>
+#### CloudFront Functions:
+
+- Lightweight JavaScript functions for high-scale, latency-sensitive CDN customisations.
+- Offer sub-millisecond startup times and support millions of requests per second.
+- Used to change Viewer Requests and Responses (Viewer Request: after CloudFront receives a request from a viewer, and Viewer Response: before CloudFront forwards the response to the viewer).
+- Managed natively within CloudFront.
+- Have limits: <1ms max execution time, 2MB max memory, 10KB total package size. No network or file system access, no access to request body.
+- Use cases: Cache key normalization, header manipulation, URL rewrites/redirects, request authentication/authorization (e.g., JWT validation). 
+
+<a name="20"></a>
+#### Lambda@Edge:
+- Lambda functions written in Node.js or Python.
+- Scales to thousands of requests per second.
+- Can change Viewer Request/Response and Origin Request/Response.
+- Functions are authored in one AWS region like us-east-1 and then replicated globally by CloudFront.
+- Have higher limits: 5-10 seconds max execution time, 128MB up to 10GB max memory, 1MB-50MB total package size. Allows network and file system access, and access to the request body.
+- Use cases: Longer execution times, adjustable CPU/memory, code dependent on third-party libraries (e.g., AWS SDK), network access to external services, file system access, or access to HTTP request body.
+
 AWS Lambda functions are like specialised express delivery drones in a vast logistics network. Instead of having a large, continuously operating warehouse (like a traditional server) always ready, Lambda functions are small, pre-packaged drones. When a specific package needs to be delivered (a request comes in), the appropriate drone is quickly dispatched, performs its single task, and then returns to its charging station, ready for the next order. If it's a very common delivery (high demand), many identical drones can be instantly launched in parallel. And with SnapStart, it's as if the most popular drones are already hovering near the dispatch centre, ready to dart off with their payload at a moment's notice.
 
 
-<a name="12"></a>
+<a name="21"></a>
 ## Step functions 
 
 AWS Step Functions is a service that allows us to build serverless visual workflows to orchestrate our Lambda functions. It is considered one of the serverless offerings within AWS.
