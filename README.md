@@ -10,7 +10,8 @@
    5. [Neptune Workbench Notebook](#8)
    6. [AWS Neptune Analytics](#9)
 2. [Serverless](#10)
-   1. [Step functions](#11)
+   1. [Lambda](#11)
+   1. [Step functions](#12)
 
 
 <a name="1"></a>
@@ -174,21 +175,6 @@ Serverless in AWS:
 - Fargate
 
 <a name="11"></a>
-## Step functions 
-
-AWS Step Functions is a service that allows us to build serverless visual workflows to orchestrate our Lambda functions. It is considered one of the serverless offerings within AWS.
-Key aspects and features of AWS Step Functions include:
-
-- Orchestration of Lambda Functions: Its primary purpose is to help us coordinate and manage multiple AWS Lambda functions, defining the order in which they run and how they interact.
-- Workflow Capabilities: Step Functions support various workflow patterns, such as sequencing (running functions one after another), parallel execution, handling conditions (logic branching), managing timeouts, and implementing robust error handling.
-- Integrations: Beyond Lambda, Step Functions can integrate with a variety of other services and resources, including EC2, ECS, on-premises servers, API Gateway, SQS queues, ... This broad integration capability allows it to orchestrate complex distributed applications.
-- Human Approval: It offers the possibility of implementing human approval features within a workflow, allowing for manual interventions or sign-offs at specific stages.
-- Use Cases: Step Functions are suitable for a wide range of applications that involve multiple steps or stages, such as order fulfilment processes, data processing pipelines, web applications, and any general workflow that benefits from visual orchestration.
-
-Think of AWS Step Functions like a digital conductor for an orchestra of cloud services. Just as a conductor directs musicians to play their parts in sequence, in parallel, or based on specific cues, Step Functions directs various AWS services (like Lambda functions) through a predefined workflow, ensuring each step is executed correctly, handling any errors, and allowing for complex logic and integrations. This allows you to build sophisticated, multi-step applications without manually managing the interactions between each component.
-
-
-<a name="?"></a>
 ## Lambda 
 
 AWS Lambda is a serverless compute service that allows developers to deploy code as functions without having to manage servers. It was a pioneer in the serverless paradigm, which now encompasses various managed services like databases, messaging, and storage. Serverless does not mean there are no servers, but rather that users do not need to manage, provision, or even see them.
@@ -246,6 +232,20 @@ Lambda@Edge and CloudFront Functions (Edge Computing)
     ◦ Use cases: Longer execution times, adjustable CPU/memory, code dependent on third-party libraries (e.g., AWS SDK), network access to external services, file system access, or access to HTTP request body.
 AWS Lambda functions are like specialised express delivery drones in a vast logistics network. Instead of having a large, continuously operating warehouse (like a traditional server) always ready, Lambda functions are small, pre-packaged drones. When a specific package needs to be delivered (a request comes in), the appropriate drone is quickly dispatched, performs its single task, and then returns to its charging station, ready for the next order. If it's a very common delivery (high demand), many identical drones can be instantly launched in parallel. And with SnapStart, it's as if the most popular drones are already hovering near the dispatch centre, ready to dart off with their payload at a moment's notice.
 
+
+<a name="12"></a>
+## Step functions 
+
+AWS Step Functions is a service that allows us to build serverless visual workflows to orchestrate our Lambda functions. It is considered one of the serverless offerings within AWS.
+Key aspects and features of AWS Step Functions include:
+
+- Orchestration of Lambda Functions: Its primary purpose is to help us coordinate and manage multiple AWS Lambda functions, defining the order in which they run and how they interact.
+- Workflow Capabilities: Step Functions support various workflow patterns, such as sequencing (running functions one after another), parallel execution, handling conditions (logic branching), managing timeouts, and implementing robust error handling.
+- Integrations: Beyond Lambda, Step Functions can integrate with a variety of other services and resources, including EC2, ECS, on-premises servers, API Gateway, SQS queues, ... This broad integration capability allows it to orchestrate complex distributed applications.
+- Human Approval: It offers the possibility of implementing human approval features within a workflow, allowing for manual interventions or sign-offs at specific stages.
+- Use Cases: Step Functions are suitable for a wide range of applications that involve multiple steps or stages, such as order fulfilment processes, data processing pipelines, web applications, and any general workflow that benefits from visual orchestration.
+
+Think of AWS Step Functions like a digital conductor for an orchestra of cloud services. Just as a conductor directs musicians to play their parts in sequence, in parallel, or based on specific cues, Step Functions directs various AWS services (like Lambda functions) through a predefined workflow, ensuring each step is executed correctly, handling any errors, and allowing for complex logic and integrations. This allows you to build sophisticated, multi-step applications without manually managing the interactions between each component.
 
 
 
