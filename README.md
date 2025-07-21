@@ -211,14 +211,16 @@ Here's a comprehensive summary of AWS Lambda:
 
 - Execution Limits:
    - Memory allocation: 128 MB to 10GB (in 1 MB increments).
-◦ Maximum execution time: 900 seconds (15 minutes).
-◦ Disk capacity in /tmp: 512 MB to 10GB.
-◦ Concurrency executions: 1000 (can be increased).
-◦ Environment variables size: 4 KB.
-• Deployment Limits:
-    ◦ Compressed .zip deployment size: 50 MB.
-    ◦ Uncompressed deployment size (code + dependencies): 250 MB.
-    ◦ The /tmp directory can be used to load other files at startup.
+   - Maximum execution time: 900 seconds (15 minutes).
+   - Disk capacity in /tmp: 512 MB to 10GB.
+   - Concurrency executions: 1000 (can be increased).
+   - Environment variables size: 4 KB.
+
+- Deployment Limits:
+   - Compressed .zip deployment size: 50 MB.
+   - Uncompressed deployment size (code + dependencies): 250 MB.
+   - The /tmp directory can be used to load other files at startup.
+
 Cold Start and SnapStart
 • Cold Start (Initialisation Phase): Lambda functions run on-demand, meaning they are not always active. If a function hasn't been recently used, it needs to be initialised before it can execute code, which can introduce a slight delay known as a "cold start" (not explicitly named in source, but described as initialization).
 • Lambda SnapStart: This feature significantly improves start-up performance by up to 10x for Java 11 and above functions at no extra cost. When enabled, the function is invoked from a pre-initialised state, avoiding the need for initialisation from scratch. When a new version of a function is published, Lambda performs the initialisation, takes a snapshot of its memory and disk state, and then caches this snapshot for low-latency access. This effectively skips the distinct "Init" phase in the invocation lifecycle.
