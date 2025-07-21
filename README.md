@@ -158,6 +158,21 @@ AWS Neptune Analytics a graph DB engine which stores large datasets in memory pr
 <a name="10"></a>
 # Serverless 
 
+Serverless does not mean there are no servers, but rather that users do not need to manage, provision, or even see them
+
+Serverless in AWS:
+
+• AWS Lambda
+• DynamoDB
+• AWS Cognito
+• AWS API Gateway
+• Amazon S3
+• AWS SNS & SQS
+• AWS Kinesis Data Firehose
+• Aurora Serverless
+• Step Functions
+• Fargate
+
 <a name="11"></a>
 ## Step functions 
 
