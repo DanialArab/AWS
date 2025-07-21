@@ -162,16 +162,16 @@ Serverless does not mean there are no servers, but rather that users do not need
 
 Serverless in AWS:
 
-• AWS Lambda
-• DynamoDB
-• AWS Cognito
-• AWS API Gateway
-• Amazon S3
-• AWS SNS & SQS
-• AWS Kinesis Data Firehose
-• Aurora Serverless
-• Step Functions
-• Fargate
+- AWS Lambda
+- DynamoDB
+- AWS Cognito
+- AWS API Gateway
+- Amazon S3
+- AWS SNS & SQS
+- AWS Kinesis Data Firehose
+- Aurora Serverless
+- Step Functions
+- Fargate
 
 <a name="11"></a>
 ## Step functions 
@@ -191,7 +191,60 @@ Think of AWS Step Functions like a digital conductor for an orchestra of cloud s
 <a name="?"></a>
 ## Lambda 
 
-
+AWS Lambda is a serverless compute service that allows developers to deploy code as functions without having to manage servers. It was a pioneer in the serverless paradigm, which now encompasses various managed services like databases, messaging, and storage. Serverless does not mean there are no servers, but rather that users do not need to manage, provision, or even see them.
+Here's a comprehensive summary of AWS Lambda based on the provided sources:
+Core Concepts and Benefits of AWS Lambda
+• Virtual Functions, No Server Management: Unlike virtual servers (e.g., Amazon EC2) which are continuously running and require intervention for scaling, Lambda functions are "virtual functions" where there are no servers to manage.
+• On-Demand Execution: Lambda functions run on-demand and are limited by time (short executions). This contrasts with EC2 instances which are continuously running.
+• Automated Scaling: Scaling in Lambda is automated, removing the need for manual intervention to add or remove servers.
+• Easy Pricing: You pay per request and compute time. There's a free tier that includes 1,000,000 AWS Lambda requests and 400,000 GBs of compute time. After the free tier, it costs $0.20 per 1 million requests and $1.00 for 600,000 GB-seconds of compute time. Running AWS Lambda is generally considered "very cheap".
+• Resource Allocation: You can easily get more resources per function, with up to 10GB of RAM, and increasing RAM also improves CPU and network performance.
+Lambda Capabilities and Integrations
+• Language Support: Lambda supports many programming languages, including Node.js (JavaScript), Python, Java (Java 8 compatible), C# (.NET Core), Golang, C# / Powershell, and Ruby. It also offers a Custom Runtime API for community-supported languages like Rust.
+• Container Image Support: Lambda can use Container Images, provided the image implements the Lambda Runtime API. For arbitrary Docker images, ECS / Fargate is preferred.
+• Extensive AWS Integration: Lambda is integrated with the whole AWS suite of services. Key integrations include CloudWatch Logs, SNS, Cognito, SQS, S3, Kinesis, API Gateway, DynamoDB, CloudFront, CloudWatch Events, and EventBridge.
+• Monitoring: Easy monitoring is available through AWS CloudWatch.
+• Use Cases:
+    ◦ Serverless Thumbnail Creation: A new image in S3 can trigger an AWS Lambda function to create a thumbnail, which is then pushed back to S3, with metadata stored in DynamoDB.
+    ◦ Serverless CRON Job: CloudWatch Events (or EventBridge) can trigger an AWS Lambda function to perform a task periodically, for example, every hour.
+    ◦ Serverless APIs: API Gateway can expose REST APIs backed by AWS Lambda and DynamoDB, forming a serverless API layer for applications.
+    ◦ Workflow Orchestration: AWS Step Functions can orchestrate Lambda functions to build serverless visual workflows, supporting sequencing, parallel execution, conditions, timeouts, and error handling.
+Lambda Limits
+• Execution Limits:
+    ◦ Memory allocation: 128 MB to 10GB (in 1 MB increments).
+    ◦ Maximum execution time: 900 seconds (15 minutes).
+    ◦ Disk capacity in /tmp: 512 MB to 10GB.
+    ◦ Concurrency executions: 1000 (can be increased).
+    ◦ Environment variables size: 4 KB.
+• Deployment Limits:
+    ◦ Compressed .zip deployment size: 50 MB.
+    ◦ Uncompressed deployment size (code + dependencies): 250 MB.
+    ◦ The /tmp directory can be used to load other files at startup.
+Cold Start and SnapStart
+• Cold Start (Initialisation Phase): Lambda functions run on-demand, meaning they are not always active. If a function hasn't been recently used, it needs to be initialised before it can execute code, which can introduce a slight delay known as a "cold start" (not explicitly named in source, but described as initialization).
+• Lambda SnapStart: This feature significantly improves start-up performance by up to 10x for Java 11 and above functions at no extra cost. When enabled, the function is invoked from a pre-initialised state, avoiding the need for initialisation from scratch. When a new version of a function is published, Lambda performs the initialisation, takes a snapshot of its memory and disk state, and then caches this snapshot for low-latency access. This effectively skips the distinct "Init" phase in the invocation lifecycle.
+Lambda in a VPC
+• Default Deployment: By default, Lambda functions are launched outside your own VPC (in an AWS-owned VPC), meaning they cannot access resources within your VPC (such as RDS, ElastiCache, internal ELB).
+• Accessing VPC Resources: To enable a Lambda function to access resources in your VPC, you must define the VPC ID, subnets, and security groups. Lambda will then create an Elastic Network Interface (ENI) in your specified subnets, allowing it to communicate with your VPC resources like Amazon RDS.
+• RDS Proxy Integration: If Lambda functions directly access a database, they might open too many connections under high load. RDS Proxy helps solve this by pooling and sharing DB connections, improving scalability, availability (reducing failover time), and security (enforcing IAM authentication). Lambda functions using RDS Proxy must be deployed in your VPC because RDS Proxy is never publicly accessible.
+• Invoking Lambda from RDS & Aurora: Lambda functions can be invoked from within your DB instance (supported for RDS for PostgreSQL and Aurora MySQL) to process data events. This requires allowing outbound traffic from your DB instance to Lambda (e.g., via Public, NAT GW, VPC Endpoints) and setting up necessary IAM permissions.
+Lambda@Edge and CloudFront Functions (Edge Computing)
+• Edge Functions: These are code snippets you write and attach to CloudFront distributions, running close to your users to minimise latency. They are fully serverless and you only pay for what you use.
+• CloudFront Functions:
+    ◦ Lightweight JavaScript functions for high-scale, latency-sensitive CDN customisations.
+    ◦ Offer sub-millisecond startup times and support millions of requests per second.
+    ◦ Used to change Viewer Requests and Responses (after CloudFront receives a request from a viewer, and before CloudFront forwards the response to the viewer).
+    ◦ Managed natively within CloudFront.
+    ◦ Have limits: <1ms max execution time, 2MB max memory, 10KB total package size. No network or file system access, no access to request body.
+    ◦ Use cases: Cache key normalization, header manipulation, URL rewrites/redirects, request authentication/authorization (e.g., JWT validation).
+• Lambda@Edge:
+    ◦ Lambda functions written in Node.js or Python.
+    ◦ Scales to thousands of requests per second.
+    ◦ Can change Viewer Request/Response and Origin Request/Response (before forwarding to the origin and after receiving response from origin).
+    ◦ Functions are authored in us-east-1 and then replicated globally by CloudFront.
+    ◦ Have higher limits: 5-10 seconds max execution time, 128MB up to 10GB max memory, 1MB-50MB total package size. Allows network and file system access, and access to the request body.
+    ◦ Use cases: Longer execution times, adjustable CPU/memory, code dependent on third-party libraries (e.g., AWS SDK), network access to external services, file system access, or access to HTTP request body.
+AWS Lambda functions are like specialised express delivery drones in a vast logistics network. Instead of having a large, continuously operating warehouse (like a traditional server) always ready, Lambda functions are small, pre-packaged drones. When a specific package needs to be delivered (a request comes in), the appropriate drone is quickly dispatched, performs its single task, and then returns to its charging station, ready for the next order. If it's a very common delivery (high demand), many identical drones can be instantly launched in parallel. And with SnapStart, it's as if the most popular drones are already hovering near the dispatch centre, ready to dart off with their payload at a moment's notice.
 
 
 
