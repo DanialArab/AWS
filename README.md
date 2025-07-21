@@ -221,16 +221,21 @@ Here's a comprehensive summary of AWS Lambda:
    - Uncompressed deployment size (code + dependencies): 250 MB.
    - The /tmp directory can be used to load other files at startup.
 
-Cold Start and SnapStart
-• Cold Start (Initialisation Phase): Lambda functions run on-demand, meaning they are not always active. If a function hasn't been recently used, it needs to be initialised before it can execute code, which can introduce a slight delay known as a "cold start" (not explicitly named in source, but described as initialization).
-• Lambda SnapStart: This feature significantly improves start-up performance by up to 10x for Java 11 and above functions at no extra cost. When enabled, the function is invoked from a pre-initialised state, avoiding the need for initialisation from scratch. When a new version of a function is published, Lambda performs the initialisation, takes a snapshot of its memory and disk state, and then caches this snapshot for low-latency access. This effectively skips the distinct "Init" phase in the invocation lifecycle.
-Lambda in a VPC
-• Default Deployment: By default, Lambda functions are launched outside your own VPC (in an AWS-owned VPC), meaning they cannot access resources within your VPC (such as RDS, ElastiCache, internal ELB).
-• Accessing VPC Resources: To enable a Lambda function to access resources in your VPC, you must define the VPC ID, subnets, and security groups. Lambda will then create an Elastic Network Interface (ENI) in your specified subnets, allowing it to communicate with your VPC resources like Amazon RDS.
-• RDS Proxy Integration: If Lambda functions directly access a database, they might open too many connections under high load. RDS Proxy helps solve this by pooling and sharing DB connections, improving scalability, availability (reducing failover time), and security (enforcing IAM authentication). Lambda functions using RDS Proxy must be deployed in your VPC because RDS Proxy is never publicly accessible.
-• Invoking Lambda from RDS & Aurora: Lambda functions can be invoked from within your DB instance (supported for RDS for PostgreSQL and Aurora MySQL) to process data events. This requires allowing outbound traffic from your DB instance to Lambda (e.g., via Public, NAT GW, VPC Endpoints) and setting up necessary IAM permissions.
+<a name="16"></a>
+### Cold Start and SnapStart
+
+- **Cold Start (Initialisation Phase)**: Lambda functions run on-demand, meaning they are not always active. If a function hasn't been recently used, it needs to be initialised before it can execute code, which can introduce a slight delay known as a "cold start" (not explicitly named in source, but described as initialization).
+- **Lambda SnapStart**: This feature significantly improves start-up performance by up to 10x for Java 11 and above functions at no extra cost. When enabled, the function is invoked from a pre-initialised state, avoiding the need for initialisation from scratch. When a new version of a function is published, Lambda performs the initialisation, takes a snapshot of its memory and disk state, and then caches this snapshot for low-latency access. This effectively skips the distinct "Init" phase in the invocation lifecycle.
+
+<a name="17"></a>
+### Lambda in a VPC
+
+- Default Deployment: By default, Lambda functions are launched outside your own VPC (in an AWS-owned VPC), meaning they cannot access resources within your VPC (such as RDS, ElastiCache, internal ELB).
+- Accessing VPC Resources: To enable a Lambda function to access resources in your VPC, you must define the VPC ID, subnets, and security groups. Lambda will then create an Elastic Network Interface (ENI) in your specified subnets, allowing it to communicate with your VPC resources like Amazon RDS.
+- RDS Proxy Integration: If Lambda functions directly access a database, they might open too many connections under high load. RDS Proxy helps solve this by pooling and sharing DB connections, improving scalability, availability (reducing failover time), and security (enforcing IAM authentication). Lambda functions using RDS Proxy must be deployed in your VPC because RDS Proxy is never publicly accessible.
+- Invoking Lambda from RDS & Aurora: Lambda functions can be invoked from within your DB instance (supported for RDS for PostgreSQL and Aurora MySQL) to process data events. This requires allowing outbound traffic from your DB instance to Lambda (e.g., via Public, NAT GW, VPC Endpoints) and setting up necessary IAM permissions.
 Lambda@Edge and CloudFront Functions (Edge Computing)
-• Edge Functions: These are code snippets you write and attach to CloudFront distributions, running close to your users to minimise latency. They are fully serverless and you only pay for what you use.
+Edge Functions: These are code snippets you write and attach to CloudFront distributions, running close to your users to minimise latency. They are fully serverless and you only pay for what you use.
 • CloudFront Functions:
     ◦ Lightweight JavaScript functions for high-scale, latency-sensitive CDN customisations.
     ◦ Offer sub-millisecond startup times and support millions of requests per second.
