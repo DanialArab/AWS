@@ -201,18 +201,20 @@ Here's a comprehensive summary of AWS Lambda:
 <a name="14"></a>
 ### Use Cases:
 
- ◦ Serverless Thumbnail Creation: A new image in S3 can trigger an AWS Lambda function to create a thumbnail, which is then pushed back to S3, with metadata stored in DynamoDB.
- ◦ Serverless CRON Job: CloudWatch Events (or EventBridge) can trigger an AWS Lambda function to perform a task periodically, for example, every hour.
- ◦ Serverless APIs: API Gateway can expose REST APIs backed by AWS Lambda and DynamoDB, forming a serverless API layer for applications.
- ◦ Workflow Orchestration: AWS Step Functions can orchestrate Lambda functions to build serverless visual workflows, supporting sequencing, parallel execution, conditions, timeouts, and error handling.
+- Serverless Thumbnail Creation: A new image in S3 can trigger an AWS Lambda function to create a thumbnail, which is then pushed back to S3, with metadata stored in DynamoDB.
+- Serverless CRON Job: CloudWatch Events (or EventBridge) can trigger an AWS Lambda function to perform a task periodically, for example, every hour.
+- Serverless APIs: API Gateway can expose REST APIs backed by AWS Lambda and DynamoDB, forming a serverless API layer for applications.
+- Workflow Orchestration: AWS Step Functions can orchestrate Lambda functions to build serverless visual workflows, supporting sequencing, parallel execution, conditions, timeouts, and error handling.
  
-Lambda Limits
-• Execution Limits:
-    ◦ Memory allocation: 128 MB to 10GB (in 1 MB increments).
-    ◦ Maximum execution time: 900 seconds (15 minutes).
-    ◦ Disk capacity in /tmp: 512 MB to 10GB.
-    ◦ Concurrency executions: 1000 (can be increased).
-    ◦ Environment variables size: 4 KB.
+<a name="15"></a>
+### Lambda Limits
+
+- Execution Limits:
+   - Memory allocation: 128 MB to 10GB (in 1 MB increments).
+◦ Maximum execution time: 900 seconds (15 minutes).
+◦ Disk capacity in /tmp: 512 MB to 10GB.
+◦ Concurrency executions: 1000 (can be increased).
+◦ Environment variables size: 4 KB.
 • Deployment Limits:
     ◦ Compressed .zip deployment size: 50 MB.
     ◦ Uncompressed deployment size (code + dependencies): 250 MB.
