@@ -474,6 +474,8 @@ Cognito comprises two main components:
 
 When a user authenticates, User Pools gives back a token, and that token can be checked by services like API Gateway or Application Load Balancer. That's how they authenticate the user and allow them to use our backend services. It's a pretty seamless flow from login to secure backend access. 
 
+![](https://github.com/DanialArab/images/blob/main/AWS/CUP_Integrations.png)
+
 <a name="39"></a>
 ### Cognito Identity Pools (Federated Identity)
 
