@@ -5,7 +5,6 @@ In this repo, I document my understanding of AWS after getting the following cer
 - **<a href="https://www.credly.com/badges/f2678b53-c145-4c53-8c8a-6c4f4ce98368">AWS Certified Cloud Practitioner</a>** Date obtained: March 24, 2022 Expires: March 24, 2028
 - AWS ML Specialty (working on this Certificate, scheduled to take the exam on Oct. 5, 2025)
 
-
 1. [AWS Neptune](#1)
    1. [How to set up a Neptune Cluster](#2)
    2. [How to interact with our Neptune Cluster](#3)
