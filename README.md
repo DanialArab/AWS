@@ -330,18 +330,38 @@ DynamoDB offers two modes to manage read/write throughput:
 
 <a name="25"></a>
 ### DynamoDB Accelerator (DAX)
-    ◦ DAX is a fully-managed, highly available, seamless in-memory cache for DynamoDB.
-    ◦ Its primary purpose is to solve read congestion by caching data, providing microseconds latency for cached information.
-    ◦ It's compatible with existing DynamoDB APIs, meaning it doesn't require application logic modification.
-    ◦ The default TTL (Time To Live) for cache entries is 5 minutes.
-    ◦ While DAX caches individual objects, queries, and scans, Amazon ElastiCache can be used for storing aggregation results.
+- DAX is a fully-managed, highly available, seamless **in-memory cache** for DynamoDB.
+- Its primary purpose is to solve **read congestion by caching data**, providing microseconds latency for cached information.
+- It's compatible with existing DynamoDB APIs, meaning it doesn't require application logic modification.
+- The default TTL (Time To Live) for cache entries is 5 minutes.
+- While DAX caches individual objects, queries, and scans, Amazon ElastiCache can be used for storing aggregation results.
     
-• DynamoDB Streams
-    ◦ DynamoDB Streams provide an ordered stream of item-level modifications (create, update, delete) to a table.
-    ◦ Use cases include reacting to changes in real-time (e.g., sending a welcome email to new users), real-time usage analytics, inserting into derivative tables, and implementing cross-region replication.
-    ◦ DynamoDB Streams have a 24-hour retention period and a limited number of consumers. They can be processed using AWS Lambda Triggers or the DynamoDB Stream Kinesis adapter.
-    ◦ Kinesis Data Streams (newer) offers longer retention (1 year) and supports a higher number of consumers. It can be processed by AWS Lambda, Kinesis Data Analytics, Kinesis Data Firehose, or AWS Glue Streaming ETL. Changes from a DynamoDB table can flow through DynamoDB Streams to Kinesis Data Streams for further processing for purposes like SNS messaging, analytics in Amazon Redshift, archiving to Amazon S3, or indexing in Amazon OpenSearch.
-• DynamoDB Global Tables
+<a name="26"></a>
+### DynamoDB Streams
+
+- DynamoDB Streams provide an ordered stream of item-level modifications (create, update, delete) to a table.
+- Use cases include
+    - reacting to changes in real-time (e.g., sending a welcome email to new users),
+    - real-time usage analytics,
+    - inserting into derivative tables,
+    - implementing cross-region replication, and
+    - invoke AWS Lambda on changes to your DynamoDB table
+
+-  DynamoDB Streams have
+    - a 24-hour retention period, and
+    - a limited number of consumers.
+    - They can be processed using AWS Lambda Triggers or the DynamoDB Stream Kinesis adapter.
+      
+- Kinesis Data Streams (newer) offers
+    - longer retention (1 year) and
+    - supports a higher number of consumers.
+    - It can be processed by AWS Lambda, Kinesis Data Analytics, Kinesis Data Firehose, or AWS Glue Streaming ETL.
+  
+Changes from a DynamoDB table can flow through DynamoDB Streams to Kinesis Data Streams for further processing for purposes like SNS messaging, analytics in Amazon Redshift, archiving to Amazon S3, or indexing in Amazon OpenSearch.
+
+<a name="27"></a>
+### DynamoDB Global Tables
+
     ◦ This feature allows a DynamoDB table to be accessible with low latency in multiple AWS regions.
     ◦ It enables Active-Active replication, meaning applications can read and write to the table in any configured region.
     ◦ Enabling DynamoDB Streams is a prerequisite for Global Tables.
