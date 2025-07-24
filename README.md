@@ -46,6 +46,7 @@ In this repo, I document my understanding of AWS after getting the following cer
        1. [Cognito User Pools](#38)
           1. [Cognito User Pools Integration](#39)
        3. [Cognito Identity Pools (Federated Identity)](#40)
+       4. [Cognito vs. IAM](#41)
 
 
 <a name="1"></a>
@@ -476,7 +477,7 @@ When a user authenticates, User Pools gives back a token, and that token can be 
 
 ![](https://github.com/DanialArab/images/blob/main/AWS/CUP_Integrations.png)
 
-<a name="39"></a>
+<a name="40"></a>
 ### Cognito Identity Pools (Federated Identity)
 
 - Identity Pools provide AWS (temporary) credentials to users so they can access AWS resources directly. This is crucial for giving users temporary AWS credentials.
@@ -485,7 +486,10 @@ When a user authenticates, User Pools gives back a token, and that token can be 
 - The IAM policies applied to these temporary credentials are defined within Cognito Identity Pools. These policies can be customised for fine-grained control, potentially even based on the user_id. Default IAM roles can be set for both authenticated and guest users.
 - A common use case involves a web or mobile application logging in and obtaining a token from a social identity provider or Cognito User Pool, then exchanging this token for temporary AWS credentials validated by Cognito Identity Pools, allowing direct access to AWS resources.
 
-In essence, Cognito helps you manage user authentication and authorisation, distinguishing itself from IAM which is generally for internal AWS users or services, whereas Cognito is tailored for "hundreds of users" or "mobile users" who "authenticate with SAML".
+<a name="41"></a>
+### Cognito vs. IAM
+
+In essence, Cognito helps you manage user authentication and authorisation, distinguishing itself from IAM which is generally for **internal AWS users or services**, whereas Cognito is tailored for "hundreds of users" or "mobile users" who "authenticate with SAML".
 
 You can think of Amazon Cognito as a digital doorman for your application. The User Pool is like the main entrance, checking credentials (username/password, social logins) and verifying identity (MFA) before allowing users into your application's lobby. Once inside, the Identity Pool acts like a special pass desk inside the lobby, where users can exchange their application entrance ticket for a temporary, tailored badge (AWS credentials) that grants them direct, limited access to specific, secure rooms (AWS resources like S3 buckets or databases) within the larger AWS building.
 
