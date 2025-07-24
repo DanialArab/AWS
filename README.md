@@ -42,7 +42,7 @@ In this repo, I document my understanding of AWS after getting the following cer
     4. [AWS API Gateway](#32)
        1. [Core Functionality](#33)
        2. [Integrations](#34)
-       3. [Endpoint Types](#35)
+       3. [API Gateway Endpoint Types](#35)
        4. [Security](#36)
 
 
@@ -431,7 +431,7 @@ API Gateway can integrate with various backend services:
 - **AWS Services**: You can expose any AWS API through API Gateway, such as starting an AWS Step Function workflow or posting a message to SQS. This allows for adding authentication, public deployment, and rate control for AWS services. An example illustrates its use with Kinesis Data Streams and Kinesis Data Firehose to send records and store JSON files in Amazon S3.
     
 <a name="35"></a>
-### Endpoint Types
+### API Gateway Endpoint Types
 
 API Gateway offers three main endpoint types:
 - Edge-Optimized (default): Ideal for global clients, routing requests through CloudFront Edge locations to improve latency. The API Gateway itself still resides in a single region.
