@@ -44,7 +44,8 @@ In this repo, I document my understanding of AWS after getting the following cer
        4. [Security](#36)
     5. [Amazon Cognito](#37)
        1. [Cognito User Pools](#38)
-       2. [ Cognito Identity Pools (Federated Identity)](#39)
+          1. [Cognito User Pools Integration](#39)
+       3. [Cognito Identity Pools (Federated Identity)](#40)
 
 
 <a name="1"></a>
@@ -467,6 +468,11 @@ Cognito comprises two main components:
    - Key user features include simple login with username/email and password, password reset, email and phone number verification, and multi-factor authentication (MFA).
    - User Pools also support federated identities, allowing users to sign in using third-party providers like Facebook, Google, or SAML.
    - It **integrates with API Gateway and Application Load Balancer**. When used with an Application Load Balancer, it can authenticate users and evaluate Cognito tokens. Similarly, with API Gateway, it can be used to authenticate and retrieve tokens.
+
+<a name="39"></a>
+#### Cognito User Pools Integration
+
+When a user authenticates, User Pools gives back a token, and that token can be checked by services like API Gateway or Application Load Balancer. That's how they authenticate the user and allow them to use our backend services. It's a pretty seamless flow from login to secure backend access. 
 
 <a name="39"></a>
 ### Cognito Identity Pools (Federated Identity)
