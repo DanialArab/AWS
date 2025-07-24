@@ -541,6 +541,8 @@ This architecture focuses on a globally scalable website where content (blogs) i
     ◦ Dynamic Content: A serverless REST API built with API Gateway, Lambda, and DynamoDB.
     ◦ Event-Driven Flows: DynamoDB Streams trigger Lambda for user emails, and S3 events trigger Lambda for image processing (like thumbnail generation).
 
+![](https://github.com/DanialArab/images/blob/main/AWS/thumbnail_gen_flow.png)
+
 <a name="45"></a>
 ### Micro Services Architecture
 This section discusses the adoption of a microservices architecture, where many services interact via REST APIs, and each service can have a varied internal design. The goal is a leaner development lifecycle.
@@ -551,6 +553,8 @@ This section discusses the adoption of a microservices architecture, where many 
 • Challenges and Serverless Solutions:
     ◦ Challenges: Microservices can introduce challenges such as repeated overhead for creating new services, difficulty optimising server density/utilisation, complexity of managing multiple service versions, and increased client-side code requirements for integration.
     ◦ Serverless Solutions: API Gateway and Lambda help overcome some of these challenges by providing automatic scaling and a pay-per-usage model. They also facilitate easy cloning of APIs and reproduction of environments, along with generated client SDKs through Swagger integration for the API Gateway.
+
+![](https://github.com/DanialArab/images/blob/main/AWS/micro_service_env.png)
 
 <a name="46"></a>
 ### Software Updates Offloading (Optimising Existing EC2 Application)
