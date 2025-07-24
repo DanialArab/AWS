@@ -46,6 +46,7 @@ In this repo, I document my understanding of AWS after getting the following cer
           1. [Cognito User Pools Integration](#39)
        3. [Cognito Identity Pools (Federated Identity)](#40)
        4. [Cognito vs. IAM](#41)
+    6. [Serverless Architectures](#42)
 
 
 <a name="1"></a>
@@ -492,8 +493,10 @@ In essence, Cognito helps you manage user authentication and authorisation, dist
 
 You can think of Amazon Cognito as a digital doorman for your application. The User Pool is like the main entrance, checking credentials (username/password, social logins) and verifying identity (MFA) before allowing users into your application's lobby. Once inside, the Identity Pool acts like a special pass desk inside the lobby, where users can exchange their application entrance ticket for a temporary, tailored badge (AWS credentials) that grants them direct, limited access to specific, secure rooms (AWS resources like S3 buckets or databases) within the larger AWS building.
 
+<a name="42"></a>
+## Serverless Architectures
 
-
+HERE
 
 **Reference:**
 
