@@ -496,7 +496,71 @@ You can think of Amazon Cognito as a digital doorman for your application. The U
 <a name="42"></a>
 ## Serverless Architectures
 
-HERE
+Let's explore several serverless and cloud-optimised architectural patterns, designed to address various application requirements such as scalability, high availability, cost efficiency, and performance.
+
+<a name="43"></a>
+### Mobile Application: MyTodoList
+
+This architecture is designed for a mobile application requiring a REST API with HTTPS, a serverless backend, direct user interaction with S3 folders, managed serverless authentication, and a scalable database with high read throughput.
+• Core Components:
+    ◦ Amazon API Gateway: Exposes the application as a REST API over HTTPS.
+    ◦ AWS Lambda: Handles the backend logic invoked by the API Gateway.
+    ◦ Amazon DynamoDB: Serves as the database, designed for high read throughput and scalability.
+    ◦ Amazon Cognito: Provides managed serverless authentication for users.
+    ◦ Amazon S3: Stores user-specific data, allowing users to directly interact with their own folders.
+    ◦ AWS STS (Security Token Service): Used by Cognito to generate temporary credentials, enabling users to access AWS resources like S3 directly with restricted policies. This pattern can also be applied to DynamoDB and Lambda.
+• Key Optimisations:
+    ◦ Caching: Utilises DAX (DynamoDB Accelerator) for caching reads on DynamoDB to handle high read throughput. Responses are also cached at the API Gateway level.
+    ◦ Security: Authentication and authorisation are managed by Cognito and STS.
+
+<a name="44"></a>
+### Serverless Hosted Website: MyBlog.com
+
+This architecture focuses on a globally scalable website where content (blogs) is often read but rarely written. It combines static files with a dynamic REST API, incorporates caching, and includes flows for new user welcome emails and photo thumbnail generation.
+• Core Components:
+    ◦ Amazon CloudFront: Provides global distribution for static content and acts as the front-end for the REST API.
+    ◦ Amazon S3: Stores static website files, distributed globally via CloudFront. Access is secured using Origin Access Control (OAC), ensuring only CloudFront can access the S3 bucket.
+    ◦ Amazon API Gateway & AWS Lambda: Form the serverless REST API for dynamic content.
+    ◦ Amazon DynamoDB: Stores dynamic blog data.
+    ◦ DAX Caching layer: Caches reads on DynamoDB for improved performance.
+    ◦ DynamoDB Global Tables: Leveraged to serve data globally, ensuring low latency for users worldwide. (Note: Aurora Global Database could also be used).
+    ◦ DynamoDB Stream: Triggers an AWS Lambda function upon changes (e.g., new user subscription).
+    ◦ Amazon Simple Email Service (SES): Used by a Lambda function (with an appropriate IAM Role) to send welcome emails to new subscribers.
+    ◦ S3 Triggers (Lambda, SQS, SNS): S3 can trigger a Lambda function for events like photo uploads, facilitating thumbnail generation. SQS (Simple Queue Service) or SNS (Simple Notification Service) can optionally be used for notifications.
+• Key Patterns:
+    ◦ Static Content Distribution: Achieved globally and securely with CloudFront and S3, using OAC.
+    ◦ Dynamic Content: A serverless REST API built with API Gateway, Lambda, and DynamoDB.
+    ◦ Event-Driven Flows: DynamoDB Streams trigger Lambda for user emails, and S3 events trigger Lambda for image processing (like thumbnail generation).
+
+<a name="45"></a>
+### Micro Services Architecture
+This section discusses the adoption of a microservices architecture, where many services interact via REST APIs, and each service can have a varied internal design. The goal is a leaner development lifecycle.
+• Common Components/Patterns:
+    ◦ Synchronous Patterns: Amazon API Gateway and Elastic Load Balancing are used for direct, real-time interactions between services or with clients.
+    ◦ Asynchronous Patterns: SQS, Kinesis, SNS, and Lambda triggers (e.g., from S3) enable decoupled and non-blocking communication between services.
+    ◦ Other Services: The environment can include AWS Lambda, ElastiCache, Amazon EC2 Auto Scaling, Amazon RDS, Amazon ECS, DynamoDB, and Amazon Route 53.
+• Challenges and Serverless Solutions:
+    ◦ Challenges: Microservices can introduce challenges such as repeated overhead for creating new services, difficulty optimising server density/utilisation, complexity of managing multiple service versions, and increased client-side code requirements for integration.
+    ◦ Serverless Solutions: API Gateway and Lambda help overcome some of these challenges by providing automatic scaling and a pay-per-usage model. They also facilitate easy cloning of APIs and reproduction of environments, along with generated client SDKs through Swagger integration for the API Gateway.
+
+<a name="46"></a>
+### Software Updates Offloading (Optimising Existing EC2 Application)
+
+This architecture addresses a common problem: an application running on EC2 that experiences high costs and CPU usage during mass software update distributions. The objective is to optimise costs without changing the existing application code.
+• Problem Statement: An application running on EC2 instances within an Auto Scaling Group across multiple Availability Zones, backed by Amazon Elastic File System, becomes costly and resource-intensive when distributing large software updates due to a surge in network requests.
+• Solution: Introduce Amazon CloudFront in front of the existing EC2 application.
+• Why CloudFront Works:
+    ◦ No Architectural Changes: Crucially, this solution requires no changes to the existing application architecture .
+    ◦ Edge Caching: CloudFront caches the static software update files at edge locations globally . Since software updates are static and do not change, they are ideal for caching .
+    ◦ Serverless Scaling: While the EC2 instances are not serverless, CloudFront is serverless and scales automatically to handle the demand .
+    ◦ Cost and Resource Savings: By offloading distribution to CloudFront, the EC2 Auto Scaling Group will not need to scale as much, leading to significant savings in EC2 costs, network bandwidth costs, and improved availability . This makes the existing application more scalable and cheaper .
+
+--------------------------------------------------------------------------------
+Think of these architectures like different types of delivery services.
+• The MyTodoList Mobile App is like a specialised local courier service. It handles authenticating customers, letting them access their specific storage lockers (S3), processing their requests (Lambda/DynamoDB), and making sure the most frequently requested items are kept ready in a quick access bin (DAX/API Gateway Cache) for speedy delivery.
+• The MyBlog.com Website is a global content delivery network. It uses a vast network of warehouses (CloudFront edge locations) to quickly serve static content from a central storage facility (S3) worldwide. For dynamic requests, it uses automated order processing (API Gateway/Lambda) and keeps track of stock globally (DynamoDB Global Tables). It also has automated systems for new customer greetings (SES via DynamoDB Stream) and photo processing (S3 trigger to Lambda for thumbnails).
+• The Microservices Architecture is like a collection of many independent, specialised shops, each handling a specific part of a larger business. They can communicate directly (synchronous) or through a messaging system (asynchronous) and each shop can be set up in its own unique way. Serverless services like API Gateway and Lambda act as self-managing, instantly scalable storefronts for these shops, reducing the setup hassle.
+• The Software Updates Offloading is like putting a global distribution centre (CloudFront) in front of an existing factory (EC2 application). Instead of the factory directly shipping every single product update to every customer, the distribution centre receives one copy, then efficiently delivers it to countless customers from its local depots, significantly reducing the factory's workload and shipping costs, without changing how the factory operates.
 
 **Reference:**
 
