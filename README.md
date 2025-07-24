@@ -47,7 +47,10 @@ In this repo, I document my understanding of AWS after getting the following cer
        3. [Cognito Identity Pools (Federated Identity)](#40)
        4. [Cognito vs. IAM](#41)
     6. [Serverless Architectures](#42)
-
+       1. [Mobile Application: MyTodoList](#43)
+       2. [Serverless Hosted Website: MyBlog.com](#44)
+       3. [Micro Services Architecture](#45)
+       4. [Software Updates Offloading (Optimising Existing EC2 Application)](#46)
 
 <a name="1"></a>
 # AWS Neptune
@@ -544,7 +547,7 @@ This architecture focuses on a globally scalable website where content (blogs) i
 ![](https://github.com/DanialArab/images/blob/main/AWS/thumbnail_gen_flow.png)
 
 <a name="45"></a>
-### Micro Services Architecture
+### Micro Services Architecture 
 This section discusses the adoption of a microservices architecture, where many services interact via REST APIs, and each service can have a varied internal design. The goal is a leaner development lifecycle.
 • Common Components/Patterns:
     ◦ Synchronous Patterns: Amazon API Gateway and Elastic Load Balancing are used for direct, real-time interactions between services or with clients.
