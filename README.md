@@ -362,18 +362,26 @@ Changes from a DynamoDB table can flow through DynamoDB Streams to Kinesis Data 
 <a name="27"></a>
 ### DynamoDB Global Tables
 
-    ◦ This feature allows a DynamoDB table to be accessible with low latency in multiple AWS regions.
-    ◦ It enables Active-Active replication, meaning applications can read and write to the table in any configured region.
-    ◦ Enabling DynamoDB Streams is a prerequisite for Global Tables.
-• Time To Live (TTL)
-    ◦ DynamoDB's TTL feature allows for automatic deletion of items after an expiry timestamp.
-    ◦ Common use cases include reducing stored data by keeping only current items, adhering to regulatory obligations, and managing web sessions.
-• Backups for Disaster Recovery
-    ◦ Continuous backups are supported via point-in-time recovery (PITR), which can be optionally enabled for the last 35 days. PITR allows recovery to any specific time within the backup window, creating a new table upon recovery.
-    ◦ On-demand backups provide full backups for long-term retention until explicitly deleted. These backups do not affect performance or latency and can be managed through AWS Backup, which also enables cross-region copy. Similar to PITR, the recovery process creates a new table.
-• Integration with Amazon S3
-    ◦ Export to S3: Requires PITR enabled and can export data from any point in the last 35 days. This process does not affect the read capacity of your table and is useful for data analysis, retaining snapshots for auditing, and ETL processes before re-importing. Exports can be in DynamoDB JSON or ION format.
-    ◦ Import from S3: Supports importing CSV, DynamoDB JSON, or ION formats. This process does not consume any write capacity, creates a new table, and logs import errors in CloudWatch Logs.
+- This feature allows a DynamoDB table to be accessible with low latency in multiple AWS regions.
+- It enables Active-Active replication, meaning applications can read and write to the table in any configured region.
+- Enabling DynamoDB Streams is a prerequisite for Global Tables.
+
+  
+<a name="28"></a>
+### Time To Live (TTL)
+- DynamoDB's TTL feature allows for automatic deletion of items after an expiry timestamp.
+- Common use cases include reducing stored data by keeping only current items, adhering to regulatory obligations, and managing web sessions.
+
+<a name="29"></a>
+### DynamoDB - Backups for Disaster Recovery
+- **Continuous backups** are supported via point-in-time recovery (PITR), which can be optionally enabled for the last 35 days. PITR allows recovery to any specific time within the backup window, creating a new table upon recovery.
+- **On-demand backups** provide full backups for long-term retention until explicitly deleted. These backups do not affect performance or latency and can be managed through AWS Backup, which also enables cross-region copy. Similar to PITR, the recovery process creates a new table.
+
+<a name="30"></a>
+### Integration with Amazon S3
+- **Export to S3**: Requires PITR enabled and can export data from any point in the last 35 days. This process does not affect the read capacity of your table and is useful for data analysis, retaining snapshots for auditing, and ETL processes before re-importing. Exports can be in DynamoDB JSON or ION format.
+- **Import from S3**: Supports importing CSV, DynamoDB JSON, or ION formats. This process does not consume any write capacity, creates a new table, and logs import errors in CloudWatch Logs.
+
 • Serverless Architecture Context
     ◦ DynamoDB is a key component in serverless architectures.
     ◦ It can be directly integrated with AWS Lambda (e.g., for CRUD operations through an API Gateway).
