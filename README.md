@@ -43,6 +43,8 @@ In this repo, I document my understanding of AWS after getting the following cer
        3. [API Gateway Endpoint Types](#35)
        4. [Security](#36)
     5. [Amazon Cognito](#37)
+       1. [Cognito User Pools](#38)
+       2. [ Cognito Identity Pools (Federated Identity)](#39)
 
 
 <a name="1"></a>
@@ -454,19 +456,27 @@ In essence, AWS API Gateway acts like a digital traffic controller for your appl
 
 Amazon Cognito is a service designed to give users an identity to interact with your web or mobile application. It allows you to manage user identities and provide them with secure access to your applications and AWS resources.
 Cognito comprises two main components:
-• Cognito User Pools (CUP):
-    ◦ CUP provides sign-in functionality for application users.
-    ◦ It enables you to create a serverless database of users for your web and mobile apps.
-    ◦ Key user features include simple login with username/email and password, password reset, email and phone number verification, and multi-factor authentication (MFA).
-    ◦ User Pools also support federated identities, allowing users to sign in using third-party providers like Facebook, Google, or SAML.
-    ◦ CUP integrates with API Gateway and Application Load Balancer. When used with an Application Load Balancer, it can authenticate users and evaluate Cognito tokens. Similarly, with API Gateway, it can be used to authenticate and retrieve tokens.
-• Cognito Identity Pools (Federated Identity):
-    ◦ Identity Pools provide AWS credentials to users so they can access AWS resources directly. This is crucial for giving users temporary AWS credentials.
+
+<a name="38"></a>
+### Cognito User Pools
+
+   - It provides sign-in functionality for application users.
+   - It enables you to create a serverless database of users for your web and mobile apps.
+   - Key user features include simple login with username/email and password, password reset, email and phone number verification, and multi-factor authentication (MFA).
+   - User Pools also support federated identities, allowing users to sign in using third-party providers like Facebook, Google, or SAML.
+   - It **integrates with API Gateway and Application Load Balancer**. When used with an Application Load Balancer, it can authenticate users and evaluate Cognito tokens. Similarly, with API Gateway, it can be used to authenticate and retrieve tokens.
+
+<a name="39"></a>
+### Cognito Identity Pools (Federated Identity)
+
+    ◦ Identity Pools provide AWS (temporary) credentials to users so they can access AWS resources directly. This is crucial for giving users temporary AWS credentials.
     ◦ The source of these users can include Cognito User Pools, 3rd party logins (social identity providers), and more.
     ◦ Once users obtain these credentials, they can access AWS services directly (such as private S3 buckets or DynamoDB tables) or through API Gateway.
     ◦ The IAM policies applied to these temporary credentials are defined within Cognito Identity Pools. These policies can be customised for fine-grained control, potentially even based on the user_id. Default IAM roles can be set for both authenticated and guest users.
     ◦ A common use case involves a web or mobile application logging in and obtaining a token from a social identity provider or Cognito User Pool, then exchanging this token for temporary AWS credentials validated by Cognito Identity Pools, allowing direct access to AWS resources.
+
 In essence, Cognito helps you manage user authentication and authorisation, distinguishing itself from IAM which is generally for internal AWS users or services, whereas Cognito is tailored for "hundreds of users" or "mobile users" who "authenticate with SAML".
+
 You can think of Amazon Cognito as a digital doorman for your application. The User Pool is like the main entrance, checking credentials (username/password, social logins) and verifying identity (MFA) before allowing users into your application's lobby. Once inside, the Identity Pool acts like a special pass desk inside the lobby, where users can exchange their application entrance ticket for a temporary, tailored badge (AWS credentials) that grants them direct, limited access to specific, secure rooms (AWS resources like S3 buckets or databases) within the larger AWS building.
 
 
