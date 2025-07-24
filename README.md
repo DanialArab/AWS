@@ -39,7 +39,7 @@ In this repo, I document my understanding of AWS after getting the following cer
       7. [DynamoDB - Backups for Disaster Recovery](#29)
       8. [Integration with Amazon S3](#30)
       9. [Serverless Architecture Context](#31)
-  4. [AWS API Gateway](#32)
+    4. [AWS API Gateway](#32)
 
 <a name="1"></a>
 # AWS Neptune
