@@ -301,25 +301,41 @@ Think of AWS Step Functions like a digital conductor for an orchestra of cloud s
 ## Amazon DymanoDB
 
 Amazon DynamoDB is a fully managed, highly available NoSQL database service that offers transaction support and replication across multiple Availability Zones (AZs). It is designed to scale to massive workloads, capable of handling millions of requests per second, trillions of rows, and hundreds of terabytes of storage, all while maintaining fast and consistent performance with single-digit millisecond latency. It integrates with IAM for security, authorisation, and administration, offers low cost, and provides auto-scaling capabilities. DynamoDB requires no maintenance or patching and is always available, offering both Standard and Infrequent Access (IA) Table Classes.
-Here's a comprehensive overview of DynamoDB:
-• Core Concepts and Structure
-    ◦ DynamoDB is comprised of Tables.
-    ◦ Each table requires a Primary Key determined at creation time.
-    ◦ Tables can contain an infinite number of items (equivalent to rows).
-    ◦ Each item has attributes that can be added over time and can be null.
-    ◦ The maximum size of an item is 400KB.
-    ◦ It supports rapidly evolving schemas.
-    ◦ Supported data types include Scalar Types (String, Number, Binary, Boolean, Null), Document Types (List, Map), and Set Types (String Set, Number Set, Binary Set). An example table might include User_ID, Game_ID, Score, and Result attributes, with User_ID potentially serving as a Partition Key and Game_ID as a Sort Key.
-• Read/Write Capacity Modes
-    ◦ DynamoDB offers two modes to manage read/write throughput:
-        ▪ Provisioned Mode (default): You specify the number of reads/writes per second, requiring capacity planning beforehand. You pay for provisioned Read Capacity Units (RCU) and Write Capacity Units (WCU), with auto-scaling options available for RCU & WCU.
-        ▪ On-Demand Mode: Reads and writes automatically scale up/down with your workloads, eliminating the need for capacity planning. This mode is more expensive as you pay for what you use and is ideal for unpredictable workloads or sudden spikes.
-• DynamoDB Accelerator (DAX)
+
+<a name="23"></a>
+### Core Concepts and Structure
+
+- DynamoDB is comprised of Tables.
+- Each table requires a Primary Key determined at creation time.
+- Tables can contain an infinite number of items (equivalent to rows).
+- Each item has attributes (and they're pretty much columns) that can be added over time and can be null.
+- The maximum size of an item is 400KB (so DynamoDB is not there to store very large objects).
+- It supports rapidly evolving schemas.
+- Supported data types include Scalar Types (String, Number, Binary, Boolean, Null), Document Types (List, Map), and Set Types (String Set, Number Set, Binary Set). An example table might include User_ID, Game_ID, Score, and Result attributes, with User_ID potentially serving as a Partition Key and Game_ID as a Sort Key.
+
+
+<a name="24"></a>
+### Read/Write Capacity Modes
+DynamoDB offers two modes to manage read/write throughput:
+
+- Provisioned Mode (default):
+    - You specify the number of reads/writes per second,
+    - requiring capacity planning beforehand.
+    - You pay for provisioned Read Capacity Units (RCU) and Write Capacity Units (WCU),
+    - with auto-scaling options available for RCU & WCU.
+- On-Demand Mode:
+    - Reads and writes automatically scale up/down with your workloads,
+    - eliminating the need for capacity planning.
+    - This mode is more expensive as you pay for what you use and is ideal for unpredictable workloads or sudden spikes.
+
+<a name="25"></a>
+### DynamoDB Accelerator (DAX)
     ◦ DAX is a fully-managed, highly available, seamless in-memory cache for DynamoDB.
     ◦ Its primary purpose is to solve read congestion by caching data, providing microseconds latency for cached information.
     ◦ It's compatible with existing DynamoDB APIs, meaning it doesn't require application logic modification.
     ◦ The default TTL (Time To Live) for cache entries is 5 minutes.
     ◦ While DAX caches individual objects, queries, and scans, Amazon ElastiCache can be used for storing aggregation results.
+    
 • DynamoDB Streams
     ◦ DynamoDB Streams provide an ordered stream of item-level modifications (create, update, delete) to a table.
     ◦ Use cases include reacting to changes in real-time (e.g., sending a welcome email to new users), real-time usage analytics, inserting into derivative tables, and implementing cross-region replication.
