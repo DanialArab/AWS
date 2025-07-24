@@ -501,7 +501,14 @@ Let's explore several serverless and cloud-optimised architectural patterns, des
 <a name="43"></a>
 ### Mobile Application: MyTodoList
 
-This architecture is designed for a mobile application requiring a REST API with HTTPS, a serverless backend, direct user interaction with S3 folders, managed serverless authentication, and a scalable database with high read throughput.
+This architecture is designed for a mobile application requiring
+- exposing a REST API with HTTPS,
+- a serverless backend,
+- direct user interaction with S3 folders,
+- managed serverless authentication,
+- users can write and read to-dos, but they mostly read them
+- a scalable database with high read throughput.
+
 • Core Components:
     ◦ Amazon API Gateway: Exposes the application as a REST API over HTTPS.
     ◦ AWS Lambda: Handles the backend logic invoked by the API Gateway.
@@ -512,6 +519,8 @@ This architecture is designed for a mobile application requiring a REST API with
 • Key Optimisations:
     ◦ Caching: Utilises DAX (DynamoDB Accelerator) for caching reads on DynamoDB to handle high read throughput. Responses are also cached at the API Gateway level.
     ◦ Security: Authentication and authorisation are managed by Cognito and STS.
+
+![](https://github.com/DanialArab/images/blob/main/AWS/mobile_app.png)
 
 <a name="44"></a>
 ### Serverless Hosted Website: MyBlog.com
