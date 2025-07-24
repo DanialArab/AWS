@@ -30,6 +30,17 @@ In this repo, I document my understanding of AWS after getting the following cer
          2. [Lambda@Edge](#20)
    2. [Step functions](#21)
    3. [Amazon DymanoDB](#22)
+      1. [Core Concepts and Structure](#23)
+      2. [Read/Write Capacity Modes](#24)
+      3. [DynamoDB Accelerator (DAX)](#25)
+      4. [DynamoDB Streams](#26)
+      5. [DynamoDB Global Tables](#27)
+      6. [Time To Live (TTL)](#28)
+      7. [DynamoDB - Backups for Disaster Recovery](#29)
+      8. [Integration with Amazon S3](#30)
+      9. [Serverless Architecture Context](#31)
+
+
 
 <a name="1"></a>
 # AWS Neptune
@@ -316,6 +327,7 @@ Amazon DynamoDB is a fully managed, highly available NoSQL database service that
 
 <a name="24"></a>
 ### Read/Write Capacity Modes
+
 DynamoDB offers two modes to manage read/write throughput:
 
 - Provisioned Mode (default):
@@ -330,6 +342,7 @@ DynamoDB offers two modes to manage read/write throughput:
 
 <a name="25"></a>
 ### DynamoDB Accelerator (DAX)
+
 - DAX is a fully-managed, highly available, seamless **in-memory cache** for DynamoDB.
 - Its primary purpose is to solve **read congestion by caching data**, providing microseconds latency for cached information.
 - It's compatible with existing DynamoDB APIs, meaning it doesn't require application logic modification.
@@ -369,25 +382,30 @@ Changes from a DynamoDB table can flow through DynamoDB Streams to Kinesis Data 
   
 <a name="28"></a>
 ### Time To Live (TTL)
+
 - DynamoDB's TTL feature allows for automatic deletion of items after an expiry timestamp.
 - Common use cases include reducing stored data by keeping only current items, adhering to regulatory obligations, and managing web sessions.
 
 <a name="29"></a>
 ### DynamoDB - Backups for Disaster Recovery
+
 - **Continuous backups** are supported via point-in-time recovery (PITR), which can be optionally enabled for the last 35 days. PITR allows recovery to any specific time within the backup window, creating a new table upon recovery.
 - **On-demand backups** provide full backups for long-term retention until explicitly deleted. These backups do not affect performance or latency and can be managed through AWS Backup, which also enables cross-region copy. Similar to PITR, the recovery process creates a new table.
 
 <a name="30"></a>
 ### Integration with Amazon S3
+
 - **Export to S3**: Requires PITR enabled and can export data from any point in the last 35 days. This process does not affect the read capacity of your table and is useful for data analysis, retaining snapshots for auditing, and ETL processes before re-importing. Exports can be in DynamoDB JSON or ION format.
 - **Import from S3**: Supports importing CSV, DynamoDB JSON, or ION formats. This process does not consume any write capacity, creates a new table, and logs import errors in CloudWatch Logs.
 
-• Serverless Architecture Context
-    ◦ DynamoDB is a key component in serverless architectures.
-    ◦ It can be directly integrated with AWS Lambda (e.g., for CRUD operations through an API Gateway).
-    ◦ For mobile applications, DynamoDB serves as the database layer, often combined with DAX for high read throughput and API Gateway for caching.
-    ◦ In serverless hosted websites, DynamoDB (potentially with Global Tables) provides the database backend for dynamic content, and DynamoDB Streams can trigger Lambda functions for actions like sending welcome emails to new users.
-    ◦ In microservices architectures, DynamoDB can be a chosen database for individual services.
+<a name="31"></a>
+### Serverless Architecture Context
+- DynamoDB is a key component in serverless architectures.
+- It can be directly integrated with AWS Lambda (e.g., for CRUD operations through an API Gateway).
+- For mobile applications, DynamoDB serves as the database layer, often combined with DAX for high read throughput and API Gateway for caching.
+- In serverless hosted websites, DynamoDB (potentially with Global Tables) provides the database backend for dynamic content, and DynamoDB Streams can trigger Lambda functions for actions like sending welcome emails to new users.
+- In microservices architectures, DynamoDB can be a chosen database for individual services.
+
 Think of DynamoDB as a vast, highly organised library where every book (item) has a unique address (primary key), and you can quickly find any book you need, even if the library spans multiple buildings across different cities (Global Tables). You can also hire a fast librarian (DAX) to keep the most popular books on hand for immediate access (caching). If someone borrows, returns, or adds a book, a special log (DynamoDB Stream) records every detail, allowing other services to react in real-time. The library even automatically discards books past their expiry date (TTL) and has a sophisticated system for full or continuous backups, ensuring no book is ever truly lost.
 
 
