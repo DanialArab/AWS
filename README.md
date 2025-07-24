@@ -1,9 +1,11 @@
 # Amazon Web Services 
 
 In this repo, I document my understanding of AWS after getting the following certificates:
-- AWS Solution Architect Associate (Valid until: )
+- **<a href="  https://www.credly.com/badges/75349987-1f49-41cf-a155-34f9fd018499/linked_in?t=sv9uqx">AWS Solution Architect Associate</a>**
 - AWS Certified Cloud Practitioner (Valid until: )
 - AWS ML Specialty (working on this Certificate, scheduled to take the exam on Oct. 5, 2025)
+
+
 
   
 1. [AWS Neptune](#1)
