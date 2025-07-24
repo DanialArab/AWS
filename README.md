@@ -434,9 +434,9 @@ API Gateway can integrate with various backend services:
 ### API Gateway Endpoint Types
 
 API Gateway offers three main endpoint types:
-- Edge-Optimized (default): Ideal for global clients, routing requests through CloudFront Edge locations to improve latency. The API Gateway itself still resides in a single region.
-- Regional: Best for clients within the same region. You can manually combine this with CloudFront for more control over caching strategies and distribution.
-- Private: Only accessible from your Virtual Private Cloud (VPC) using an interface VPC endpoint (ENI). Access is defined using a resource policy.
+- **Edge-Optimized (default)**: Ideal for global clients, routing requests through CloudFront Edge locations to improve latency. The API Gateway itself still resides in a single region.
+- **Regional**: Best for clients within the same region. You can manually combine this with CloudFront for more control over caching strategies and distribution.
+- **Private**: Only accessible from your Virtual Private Cloud (VPC) using an interface VPC endpoint (ENI). Access is defined using a resource policy.
 
 <a name="36"></a>
 ### Security
