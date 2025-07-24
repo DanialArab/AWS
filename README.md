@@ -415,9 +415,9 @@ AWS API Gateway is a service that allows you to create, publish, maintain, monit
 **Core Functionality**: When used with AWS Lambda, API Gateway means no infrastructure to manage, providing a serverless API solution. It supports the WebSocket Protocol and can handle API versioning (e.g., v1, v2) and different environments (development, test, production). It also provides features for transforming and validating requests and responses, generating SDKs and API specifications, and caching API responses.
 
 **Integrations**: API Gateway can integrate with various backend services:
-- Lambda Function: It offers an easy way to expose REST APIs backed by AWS Lambda functions, allowing API Gateway to invoke Lambda functions.
-- HTTP Endpoints: It can expose internal HTTP APIs (e.g., on-premise systems, Application Load Balancers), enabling you to add features like rate limiting, caching, user authentication, and API keys to existing HTTP backends.
-- AWS Services: You can expose any AWS API through API Gateway, such as starting an AWS Step Function workflow or posting a message to SQS. This allows for adding authentication, public deployment, and rate control for AWS services. An example illustrates its use with Kinesis Data Streams and Kinesis Data Firehose to send records and store JSON files in Amazon S3.
+- **Lambda Function**: It offers an easy way to expose REST APIs backed by AWS Lambda functions, allowing API Gateway to invoke Lambda functions.
+- **HTTP Endpoints**: It helps to expose HTTP endpoints in the backend. It can expose internal HTTP APIs (e.g., on-premise systems, Application Load Balancers), enabling you to add features like rate limiting, caching, user authentication, and API keys to existing HTTP backends.
+- **AWS Services**: You can expose any AWS API through API Gateway, such as starting an AWS Step Function workflow or posting a message to SQS. This allows for adding authentication, public deployment, and rate control for AWS services. An example illustrates its use with Kinesis Data Streams and Kinesis Data Firehose to send records and store JSON files in Amazon S3.
     
 **Endpoint Types**: 
 API Gateway offers three main endpoint types:
