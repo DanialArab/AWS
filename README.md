@@ -40,6 +40,11 @@ In this repo, I document my understanding of AWS after getting the following cer
       8. [Integration with Amazon S3](#30)
       9. [Serverless Architecture Context](#31)
     4. [AWS API Gateway](#32)
+       1. [Core Functionality](#33)
+       2. [Integrations](#34)
+       3. [Endpoint Types](#35)
+       4. [Security](#36)
+
 
 <a name="1"></a>
 # AWS Neptune
@@ -408,24 +413,35 @@ Changes from a DynamoDB table can flow through DynamoDB Streams to Kinesis Data 
 Think of DynamoDB as a vast, highly organised library where every book (item) has a unique address (primary key), and you can quickly find any book you need, even if the library spans multiple buildings across different cities (Global Tables). You can also hire a fast librarian (DAX) to keep the most popular books on hand for immediate access (caching). If someone borrows, returns, or adds a book, a special log (DynamoDB Stream) records every detail, allowing other services to react in real-time. The library even automatically discards books past their expiry date (TTL) and has a sophisticated system for full or continuous backups, ensuring no book is ever truly lost.
 
 <a name="32"></a>
-# AWS API Gateway
+## AWS API Gateway
 
 AWS API Gateway is a service that allows you to create, publish, maintain, monitor, and secure APIs at any scale. It acts as a "front door" for applications to access data, business logic, or functionality from your backend services.
 
-**Core Functionality**: When used with AWS Lambda, API Gateway means no infrastructure to manage, providing a serverless API solution. It supports the WebSocket Protocol and can handle API versioning (e.g., v1, v2) and different environments (development, test, production). It also provides features for transforming and validating requests and responses, generating SDKs and API specifications, and caching API responses.
+<a name="33"></a>
+### Core Functionality
 
-**Integrations**: API Gateway can integrate with various backend services:
+When used with AWS Lambda, API Gateway means no infrastructure to manage, providing a serverless API solution. It supports the WebSocket Protocol and can handle API versioning (e.g., v1, v2) and different environments (development, test, production). It also provides features for transforming and validating requests and responses, generating SDKs and API specifications, and caching API responses.
+
+<a name="34"></a>
+### Integrations
+
+API Gateway can integrate with various backend services:
 - **Lambda Function**: It offers an easy way to expose REST APIs backed by AWS Lambda functions, allowing API Gateway to invoke Lambda functions.
 - **HTTP Endpoints**: It helps to expose HTTP endpoints in the backend. It can expose internal HTTP APIs (e.g., on-premise systems, Application Load Balancers), enabling you to add features like rate limiting, caching, user authentication, and API keys to existing HTTP backends.
 - **AWS Services**: You can expose any AWS API through API Gateway, such as starting an AWS Step Function workflow or posting a message to SQS. This allows for adding authentication, public deployment, and rate control for AWS services. An example illustrates its use with Kinesis Data Streams and Kinesis Data Firehose to send records and store JSON files in Amazon S3.
     
-**Endpoint Types**: 
+<a name="35"></a>
+### Endpoint Types
+
 API Gateway offers three main endpoint types:
 - Edge-Optimized (default): Ideal for global clients, routing requests through CloudFront Edge locations to improve latency. The API Gateway itself still resides in a single region.
 - Regional: Best for clients within the same region. You can manually combine this with CloudFront for more control over caching strategies and distribution.
 - Private: Only accessible from your Virtual Private Cloud (VPC) using an interface VPC endpoint (ENI). Access is defined using a resource policy.
 
-**Security**: API Gateway provides robust security features for user authentication and HTTPS:
+<a name="36"></a>
+### Security
+
+API Gateway provides robust security features for user authentication and HTTPS:
 - User Authentication:
     - IAM Roles: Useful for internal applications.
     - Cognito: Provides identity for external users, such as mobile users.
