@@ -44,6 +44,7 @@ In this repo, I document my understanding of AWS after getting the following cer
        2. [Integrations](#34)
        3. [API Gateway Endpoint Types](#35)
        4. [Security](#36)
+    5. [Amazon Cognito](#37)
 
 
 <a name="1"></a>
