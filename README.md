@@ -412,6 +412,7 @@ Think of DynamoDB as a vast, highly organised library where every book (item) ha
 
 HERE
 
+
 **Reference:**
 
 AWS Neptune:
