@@ -39,8 +39,7 @@ In this repo, I document my understanding of AWS after getting the following cer
       7. [DynamoDB - Backups for Disaster Recovery](#29)
       8. [Integration with Amazon S3](#30)
       9. [Serverless Architecture Context](#31)
-
-
+  4. [AWS API Gateway](#32)
 
 <a name="1"></a>
 # AWS Neptune
@@ -408,7 +407,10 @@ Changes from a DynamoDB table can flow through DynamoDB Streams to Kinesis Data 
 
 Think of DynamoDB as a vast, highly organised library where every book (item) has a unique address (primary key), and you can quickly find any book you need, even if the library spans multiple buildings across different cities (Global Tables). You can also hire a fast librarian (DAX) to keep the most popular books on hand for immediate access (caching). If someone borrows, returns, or adds a book, a special log (DynamoDB Stream) records every detail, allowing other services to react in real-time. The library even automatically discards books past their expiry date (TTL) and has a sophisticated system for full or continuous backups, ensuring no book is ever truly lost.
 
+<a name="32"></a>
+# AWS API Gateway
 
+HERE
 
 **Reference:**
 
