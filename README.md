@@ -2,7 +2,7 @@
 
 In this repo, I document my understanding of AWS after getting the following certificates:
 - **<a href="https://www.credly.com/badges/75349987-1f49-41cf-a155-34f9fd018499/linked_in?t=sv9uqx">AWS Solution Architect Associate</a>**
-- AWS Certified Cloud Practitioner (Valid until: )
+- **<a href="https://www.credly.com/badges/f2678b53-c145-4c53-8c8a-6c4f4ce98368">AWS Certified Cloud Practitioner</a>**
 - AWS ML Specialty (working on this Certificate, scheduled to take the exam on Oct. 5, 2025)
 
 
