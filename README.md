@@ -504,6 +504,8 @@ Let's explore several serverless and cloud-optimised architectural patterns, des
 <a name="43"></a>
 ### Mobile Application: MyTodoList
 
+HERE
+
 This architecture is designed for a mobile application requiring
 - exposing a REST API with HTTPS,
 - a serverless backend,
