@@ -578,6 +578,8 @@ This architecture addresses a common problem: an application running on EC2 that
      - Serverless Scaling: While the EC2 instances are not serverless, CloudFront is serverless and scales automatically to handle the demand .
      - Cost and Resource Savings: By offloading distribution to CloudFront, the EC2 Auto Scaling Group will not need to scale as much, leading to significant savings in EC2 costs, network bandwidth costs, and improved availability. This makes the existing application more scalable and cheaper .
 
+![](https://github.com/DanialArab/images/blob/main/AWS/massive_sortware_updates.png)
+
 
 --------------------------------------------------------------------------------
 Think of these architectures like different types of delivery services.
