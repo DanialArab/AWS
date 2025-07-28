@@ -553,13 +553,15 @@ This architecture focuses on a globally scalable website where content (blogs) i
 <a name="45"></a>
 ### Micro Services Architecture 
 This section discusses the adoption of a microservices architecture, where many services interact via REST APIs, and each service can have a varied internal design. The goal is a leaner development lifecycle.
-• Common Components/Patterns:
-    ◦ Synchronous Patterns: Amazon API Gateway and Elastic Load Balancing are used for direct, real-time interactions between services or with clients.
-    ◦ Asynchronous Patterns: SQS, Kinesis, SNS, and Lambda triggers (e.g., from S3) enable decoupled and non-blocking communication between services.
-    ◦ Other Services: The environment can include AWS Lambda, ElastiCache, Amazon EC2 Auto Scaling, Amazon RDS, Amazon ECS, DynamoDB, and Amazon Route 53.
-• Challenges and Serverless Solutions:
-    ◦ Challenges: Microservices can introduce challenges such as repeated overhead for creating new services, difficulty optimising server density/utilisation, complexity of managing multiple service versions, and increased client-side code requirements for integration.
-    ◦ Serverless Solutions: API Gateway and Lambda help overcome some of these challenges by providing automatic scaling and a pay-per-usage model. They also facilitate easy cloning of APIs and reproduction of environments, along with generated client SDKs through Swagger integration for the API Gateway.
+
+- Common Components/Patterns:
+   - Synchronous Patterns: Amazon API Gateway and Elastic Load Balancing are used for direct, real-time interactions between services or with clients.
+   - Asynchronous Patterns: SQS, Kinesis, SNS, and Lambda triggers (e.g., from S3) enable decoupled and non-blocking communication between services.
+   - Other Services: The environment can include AWS Lambda, ElastiCache, Amazon EC2 Auto Scaling, Amazon RDS, Amazon ECS, DynamoDB, and Amazon Route 53.
+
+- Challenges and Serverless Solutions:
+     - Challenges: Microservices can introduce challenges such as repeated overhead for creating new services, difficulty optimising server density/utilisation, complexity of managing multiple service versions, and increased client-side code requirements for integration.
+     - Serverless Solutions: API Gateway and Lambda help overcome some of these challenges by providing automatic scaling and a pay-per-usage model. They also facilitate easy cloning of APIs and reproduction of environments, along with generated client SDKs through Swagger integration for the API Gateway.
 
 ![](https://github.com/DanialArab/images/blob/main/AWS/micro_service_env.png)
 
