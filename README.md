@@ -51,7 +51,12 @@ In this repo, I document my understanding of AWS after getting the following cer
        2. [Serverless Hosted Website: MyBlog.com](#44)
        3. [Micro Services Architecture](#45)
        4. [Software Updates Offloading (Optimising Existing EC2 Application)](#46)
+3. [Containers on Cloud](#47)
 
+
+
+
+   
 <a name="1"></a>
 # AWS Neptune
 
@@ -586,6 +591,14 @@ Think of these architectures like different types of delivery services.
 - The MyBlog.com Website is a global content delivery network. It uses a vast network of warehouses (CloudFront edge locations) to quickly serve static content from a central storage facility (S3) worldwide. For dynamic requests, it uses automated order processing (API Gateway/Lambda) and keeps track of stock globally (DynamoDB Global Tables). It also has automated systems for new customer greetings (SES via DynamoDB Stream) and photo processing (S3 trigger to Lambda for thumbnails).
 - The Microservices Architecture is like a collection of many independent, specialised shops, each handling a specific part of a larger business. They can communicate directly (synchronous) or through a messaging system (asynchronous) and each shop can be set up in its own unique way. Serverless services like API Gateway and Lambda act as self-managing, instantly scalable storefronts for these shops, reducing the setup hassle.
 - The Software Updates Offloading is like putting a global distribution centre (CloudFront) in front of an existing factory (EC2 application). Instead of the factory directly shipping every single product update to every customer, the distribution centre receives one copy, then efficiently delivers it to countless customers from its local depots, significantly reducing the factory's workload and shipping costs, without changing how the factory operates.
+
+
+<a name="47"></a>
+# Containers on Cloud
+
+
+
+
 
 **Reference:**
 
