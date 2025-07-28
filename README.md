@@ -504,8 +504,6 @@ Let's explore several serverless and cloud-optimised architectural patterns, des
 <a name="43"></a>
 ### Mobile Application: MyTodoList
 
-HERE
-
 This architecture is designed for a mobile application requiring
 - exposing a REST API with HTTPS,
 - a serverless backend,
@@ -514,13 +512,13 @@ This architecture is designed for a mobile application requiring
 - users can write and read to-dos, but they mostly read them
 - a scalable database with high read throughput.
 
-• Core Components:
-    ◦ Amazon API Gateway: Exposes the application as a REST API over HTTPS.
-    ◦ AWS Lambda: Handles the backend logic invoked by the API Gateway.
-    ◦ Amazon DynamoDB: Serves as the database, designed for high read throughput and scalability.
-    ◦ Amazon Cognito: Provides managed serverless authentication for users.
-    ◦ Amazon S3: Stores user-specific data, allowing users to directly interact with their own folders.
-    ◦ AWS STS (Security Token Service): Used by Cognito to generate temporary credentials, enabling users to access AWS resources like S3 directly with restricted policies. This pattern can also be applied to DynamoDB and Lambda.
+- Core Components:
+     - Amazon API Gateway: Exposes the application as a REST API over HTTPS.
+◦ AWS Lambda: Handles the backend logic invoked by the API Gateway.
+◦ Amazon DynamoDB: Serves as the database, designed for high read throughput and scalability.
+◦ Amazon Cognito: Provides managed serverless authentication for users.
+◦ Amazon S3: Stores user-specific data, allowing users to directly interact with their own folders.
+◦ AWS STS (Security Token Service): Used by Cognito to generate temporary credentials, enabling users to access AWS resources like S3 directly with restricted policies. This pattern can also be applied to DynamoDB and Lambda.
 • Key Optimisations:
     ◦ Caching: Utilises DAX (DynamoDB Accelerator) for caching reads on DynamoDB to handle high read throughput. Responses are also cached at the API Gateway level.
     ◦ Security: Authentication and authorisation are managed by Cognito and STS.
