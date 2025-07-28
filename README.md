@@ -596,7 +596,71 @@ Think of these architectures like different types of delivery services.
 <a name="47"></a>
 # Containers on Cloud
 
-
+Docker is a software development platform that allows applications to be packaged into containers. These containers can run on any operating system, ensuring predictable behaviour and fewer compatibility issues, making applications easier to maintain and deploy. Docker is suitable for various use cases, including microservices architecture and "lift-and-shift" migrations of on-premises applications to the AWS cloud.
+Docker vs. Virtual Machines (VMs) While Docker is a form of virtualisation, it differs from traditional VMs. Docker containers share resources with the host operating system, enabling many containers to run on a single server. In contrast, VMs typically have their own guest operating systems, hypervisors, and applications. To get started with Docker, you typically use a Dockerfile to build an image, which then runs as a container.
+Docker Image Storage Docker images are stored in Docker Repositories. Key repositories include:
+• Docker Hub: A public repository where you can find base images for many technologies and operating systems (e.g., Ubuntu, MySQL).
+• Amazon ECR (Amazon Elastic Container Registry): AWS's own container registry, which can be private or public (Amazon ECR Public Gallery). ECR is fully integrated with Amazon ECS, backed by Amazon S3, and access is controlled via IAM. It also supports image vulnerability scanning, versioning, and lifecycle management. Images are pushed to ECR and pulled by container services.
+Docker Containers Management on AWS AWS provides several services for managing Docker containers:
+• Amazon Elastic Container Service (Amazon ECS): Amazon's own container platform.
+• Amazon Elastic Kubernetes Service (Amazon EKS): Amazon's managed Kubernetes service, which is an open-source system for automating deployment, scaling, and management of containerised applications.
+• AWS Fargate: Amazon's serverless container platform that works with both ECS and EKS.
+• Amazon ECR: Used to store container images.
+Amazon ECS (Elastic Container Service) ECS allows you to launch Docker containers on AWS by launching ECS Tasks on ECS Clusters. It offers two main launch types:
+• EC2 Launch Type:
+    ◦ You are responsible for provisioning and maintaining the underlying EC2 instances (infrastructure).
+    ◦ Each EC2 instance must run the ECS Agent to register with the ECS Cluster.
+    ◦ AWS handles starting and stopping containers.
+• Fargate Launch Type:
+    ◦ Serverless: You do not provision or manage any EC2 instances.
+    ◦ You simply define task definitions, and AWS runs ECS Tasks based on your specified CPU and RAM requirements.
+    ◦ Scaling is simplified by increasing the number of tasks.
+IAM Roles for ECS:
+• EC2 Instance Profile (for EC2 Launch Type only): Used by the ECS agent for API calls to the ECS service, sending logs to CloudWatch Logs, pulling Docker images from ECR, and referencing sensitive data in Secrets Manager or SSM Parameter Store.
+• ECS Task Role: Allows each task to have its own specific permissions, defined in the task definition, enabling different ECS services to use different roles.
+Load Balancer Integrations:
+• Application Load Balancer (ALB) is supported for most use cases.
+• Network Load Balancer (NLB) is recommended for high throughput/performance or when paired with AWS PrivateLink.
+• Classic Load Balancer (CLB) is supported but not recommended, lacking advanced features and Fargate compatibility.
+Data Volumes (EFS):
+• You can mount Amazon EFS (Elastic File System) file systems onto ECS tasks, which works for both EC2 and Fargate launch types.
+• Tasks in any Availability Zone can share the same data in the EFS file system.
+• Combining Fargate with EFS provides a serverless solution for persistent, multi-AZ shared storage. Note that Amazon S3 cannot be mounted as a file system.
+ECS Service Auto Scaling:
+• Automatically increases or decreases the desired number of ECS tasks.
+• Uses AWS Application Auto Scaling and can scale based on metrics such as:
+    ◦ ECS Service Average CPU Utilisation.
+    ◦ ECS Service Average Memory Utilisation.
+    ◦ ALB Request Count Per Target.
+• Scaling policies include Target Tracking (based on a target value for a CloudWatch metric), Step Scaling (based on a CloudWatch Alarm), and Scheduled Scaling (for predictable changes at specific dates/times).
+• ECS Service Auto Scaling (task level) is distinct from EC2 Auto Scaling (EC2 instance level). Fargate Auto Scaling is simpler due to its serverless nature.
+EC2 Launch Type – Auto Scaling EC2 Instances:
+• To accommodate ECS Service Scaling, you can add underlying EC2 instances.
+• This is achieved through Auto Scaling Group (ASG) Scaling (e.g., based on CPU utilisation).
+• Alternatively, an ECS Cluster Capacity Provider can automatically provision and scale the infrastructure (EC2 instances) for your ECS Tasks by adding EC2 instances when capacity (CPU, RAM) is low.
+ECS Task Invocation:
+• ECS tasks can be invoked by Amazon EventBridge, either in response to events (e.g., S3 object upload) or on a schedule (e.g., for batch processing).
+• Tasks can also poll messages from an SQS Queue.
+• EventBridge can also be used to intercept events when ECS tasks stop, allowing for notifications or automated actions.
+Amazon EKS (Elastic Kubernetes Service) EKS is a managed Kubernetes service on AWS.
+• It's an alternative to ECS with a similar goal but a different API.
+• EKS supports deploying worker nodes on EC2 instances or serverless containers using Fargate.
+• It's particularly useful if your organisation already uses Kubernetes on-premises or in another cloud and wishes to migrate to AWS. Kubernetes is cloud-agnostic.
+• For multi-region deployments, you would deploy one EKS cluster per region.
+• Logs and metrics can be collected using CloudWatch Container Insights.
+EKS Node Types:
+• Managed Node Groups: EKS creates and manages the EC2 instances (nodes) for you, as part of an ASG managed by EKS. Supports On-Demand or Spot Instances.
+• Self-Managed Nodes: You create and register the nodes to the EKS cluster and manage them with an ASG. You can use pre-built Amazon EKS Optimized AMIs. Supports On-Demand or Spot Instances.
+• AWS Fargate: No maintenance required, as no nodes are managed by you.
+EKS Data Volumes:
+• EKS requires a StorageClass manifest and leverages a Container Storage Interface (CSI) compliant driver.
+• It supports various storage solutions, including Amazon EBS, Amazon EFS (which works with Fargate), Amazon FSx for Lustre, and Amazon FSx for NetApp ONTAP.
+AWS App Runner App Runner is a fully managed service that simplifies the deployment of web applications and APIs at scale.
+• It requires no infrastructure experience.
+• You can start with either your source code or a container image (Docker).
+• App Runner automatically builds and deploys the web application, handling automatic scaling, high availability, load balancing, and encryption.
+• It also supports VPC access and connectivity to databases, caches, and message queues.
+• Use cases include web applications, APIs, microservices, and rapid production deployments.
 
 
 
