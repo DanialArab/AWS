@@ -530,7 +530,7 @@ This architecture is designed for a mobile application requiring
 <a name="44"></a>
 ### Serverless Hosted Website: MyBlog.com
 
-This architecture focuses on a globally scalable website where content (blogs) is often read but rarely written. It combines static files with a dynamic REST API, incorporates caching, and includes flows for new user welcome emails and photo thumbnail generation.
+This architecture focuses on a globally scalable website where content (blogs) is often read but rarely written. Some of the website is purely static files, the rest is a dynamic REST API. So it combines static files with a dynamic REST API, incorporates caching, and includes flows for new user welcome emails and photo thumbnail generation.
 
 - Core Components:
    - Amazon CloudFront: Provides global distribution for static content and acts as the front-end for the REST API.
