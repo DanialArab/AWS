@@ -569,13 +569,14 @@ This section discusses the adoption of a microservices architecture, where many 
 ### Software Updates Offloading (Optimising Existing EC2 Application)
 
 This architecture addresses a common problem: an application running on EC2 that experiences high costs and CPU usage during mass software update distributions. The objective is to optimise costs without changing the existing application code.
-• Problem Statement: An application running on EC2 instances within an Auto Scaling Group across multiple Availability Zones, backed by Amazon Elastic File System, becomes costly and resource-intensive when distributing large software updates due to a surge in network requests.
-• Solution: Introduce Amazon CloudFront in front of the existing EC2 application.
-• Why CloudFront Works:
-    ◦ No Architectural Changes: Crucially, this solution requires no changes to the existing application architecture .
-    ◦ Edge Caching: CloudFront caches the static software update files at edge locations globally . Since software updates are static and do not change, they are ideal for caching .
-    ◦ Serverless Scaling: While the EC2 instances are not serverless, CloudFront is serverless and scales automatically to handle the demand .
-    ◦ Cost and Resource Savings: By offloading distribution to CloudFront, the EC2 Auto Scaling Group will not need to scale as much, leading to significant savings in EC2 costs, network bandwidth costs, and improved availability . This makes the existing application more scalable and cheaper .
+
+- Problem Statement: An application running on EC2 instances within an Auto Scaling Group across multiple Availability Zones, backed by Amazon Elastic File System, becomes costly and resource-intensive when distributing large software updates due to a surge in network requests.
+- Solution: Introduce Amazon CloudFront in front of the existing EC2 application.
+- Why CloudFront Works:
+     - No Architectural Changes: Crucially, this solution requires no changes to the existing application architecture .
+     - Edge Caching: CloudFront caches the static software update files at edge locations globally . Since software updates are static and do not change, they are ideal for caching .
+     - Serverless Scaling: While the EC2 instances are not serverless, CloudFront is serverless and scales automatically to handle the demand .
+     - Cost and Resource Savings: By offloading distribution to CloudFront, the EC2 Auto Scaling Group will not need to scale as much, leading to significant savings in EC2 costs, network bandwidth costs, and improved availability. This makes the existing application more scalable and cheaper .
 
 --------------------------------------------------------------------------------
 Think of these architectures like different types of delivery services.
