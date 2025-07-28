@@ -521,7 +521,7 @@ This architecture is designed for a mobile application requiring
      - AWS STS (Security Token Service): Used by Cognito to generate temporary credentials, enabling users to access AWS resources like S3 directly with restricted policies. This pattern can also be applied to DynamoDB and Lambda.
 
 - Key Optimisations:
-     - Caching: Utilises DAX (DynamoDB Accelerator) for caching reads on DynamoDB to handle high read throughput. Responses are also cached at the API Gateway level.
+     - Caching: Utilises DAX (DynamoDB Accelerator) for caching reads on DynamoDB to handle high read throughput. 
      - Security: Authentication and authorisation are managed by Cognito and STS.
      - Caching the responses at the Amazon API Gateway level. This is also something we can do And this is also a very good one if you think that the answers never really change, and that you can start caching a few responses for some few API routes.
 
