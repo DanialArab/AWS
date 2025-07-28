@@ -514,14 +514,16 @@ This architecture is designed for a mobile application requiring
 
 - Core Components:
      - Amazon API Gateway: Exposes the application as a REST API over HTTPS.
-◦ AWS Lambda: Handles the backend logic invoked by the API Gateway.
-◦ Amazon DynamoDB: Serves as the database, designed for high read throughput and scalability.
-◦ Amazon Cognito: Provides managed serverless authentication for users.
-◦ Amazon S3: Stores user-specific data, allowing users to directly interact with their own folders.
-◦ AWS STS (Security Token Service): Used by Cognito to generate temporary credentials, enabling users to access AWS resources like S3 directly with restricted policies. This pattern can also be applied to DynamoDB and Lambda.
-• Key Optimisations:
-    ◦ Caching: Utilises DAX (DynamoDB Accelerator) for caching reads on DynamoDB to handle high read throughput. Responses are also cached at the API Gateway level.
-    ◦ Security: Authentication and authorisation are managed by Cognito and STS.
+     - AWS Lambda: Handles the backend logic invoked by the API Gateway.
+     - Amazon DynamoDB: Serves as the database, designed for high read throughput and scalability.
+     - Amazon Cognito: Provides managed serverless authentication for users.
+     - Amazon S3: Stores user-specific data, allowing users to directly interact with their own folders.
+     - AWS STS (Security Token Service): Used by Cognito to generate temporary credentials, enabling users to access AWS resources like S3 directly with restricted policies. This pattern can also be applied to DynamoDB and Lambda.
+
+- Key Optimisations:
+     - Caching: Utilises DAX (DynamoDB Accelerator) for caching reads on DynamoDB to handle high read throughput. Responses are also cached at the API Gateway level.
+     - Security: Authentication and authorisation are managed by Cognito and STS.
+     - Caching the responses at the Amazon API Gateway level. This is also something we can do And this is also a very good one if you think that the answers never really change, and that you can start caching a few responses for some few API routes.
 
 ![](https://github.com/DanialArab/images/blob/main/AWS/mobile_app.png)
 
