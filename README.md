@@ -552,7 +552,7 @@ This architecture focuses on a globally scalable website where content (blogs) i
 
 <a name="45"></a>
 ### Micro Services Architecture 
-This section discusses the adoption of a microservices architecture, where many services interact via REST APIs, and each service can have a varied internal design. The goal is a leaner development lifecycle.
+This section discusses the adoption of a microservices architecture, where many services interact via REST APIs, and each service can have a varied internal design. The goal is a leaner development lifecycle (We want each service to scale independently).
 
 - Common Components/Patterns:
    - Synchronous Patterns: Amazon API Gateway and Elastic Load Balancing are used for direct, real-time interactions between services or with clients.
