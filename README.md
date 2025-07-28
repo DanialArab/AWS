@@ -535,7 +535,7 @@ This architecture focuses on a globally scalable website where content (blogs) i
 - Core Components:
    - Amazon CloudFront: Provides global distribution for static content and acts as the front-end for the REST API.
    - Amazon S3: Stores static website files, distributed globally via CloudFront. Access is secured using Origin Access Control (OAC), ensuring only CloudFront can access the S3 bucket.
-   - Amazon API Gateway & AWS Lambda: Form the serverless REST API for dynamic content.
+   - Amazon API Gateway & AWS Lambda: Form the serverless REST API 
    - Amazon DynamoDB: Stores dynamic blog data.
    - DAX Caching layer: Caches reads on DynamoDB for improved performance.
    - DynamoDB Global Tables: Leveraged to serve data globally, ensuring low latency for users worldwide. (Note: Aurora Global Database could also be used - but in this case it wouldn't have been serverless, it would've been provisioned Aurora).
@@ -543,10 +543,10 @@ This architecture focuses on a globally scalable website where content (blogs) i
    - Amazon Simple Email Service (SES): Used by a Lambda function (with an appropriate IAM Role) to send welcome emails to new subscribers.
    - S3 Triggers (Lambda, SQS, SNS): S3 can trigger a Lambda function for events like photo uploads, facilitating thumbnail generation. SQS (Simple Queue Service) or SNS (Simple Notification Service) can optionally be used for notifications.
 
-• Key Patterns:
-    ◦ Static Content Distribution: Achieved globally and securely with CloudFront and S3, using OAC.
-    ◦ Dynamic Content: A serverless REST API built with API Gateway, Lambda, and DynamoDB.
-    ◦ Event-Driven Flows: DynamoDB Streams trigger Lambda for user emails, and S3 events trigger Lambda for image processing (like thumbnail generation).
+- Key Patterns:
+   - Static Content Distribution: Achieved globally and securely with CloudFront and S3, using OAC.
+   - Dynamic Content: A serverless REST API built with API Gateway, Lambda, and DynamoDB.
+   - Event-Driven Flows: DynamoDB Streams trigger Lambda for user emails, and S3 events trigger Lambda for image processing (like thumbnail generation).
 
 ![](https://github.com/DanialArab/images/blob/main/AWS/thumbnail_gen_flow.png)
 
