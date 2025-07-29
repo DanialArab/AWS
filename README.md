@@ -702,7 +702,7 @@ Amazon EKS (Elastic Kubernetes Service) is a managed Kubernetes service on AWS.
 - AWS Fargate: No maintenance required, as no nodes are managed by you.
 
 <a name="58"></a>
-### EKS Data Volumes:
+### EKS Data Volumes
 - EKS requires a StorageClass manifest and leverages a Container Storage Interface (CSI) compliant driver.
 - It supports various storage solutions, including Amazon EBS, Amazon EFS (which works with Fargate), Amazon FSx for Lustre, and Amazon FSx for NetApp ONTAP.
 
