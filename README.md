@@ -61,8 +61,9 @@ In this repo, I document my understanding of AWS after getting the following cer
       5. [EC2 Launch Type – Auto Scaling EC2 Instances](#54)
       6. [ECS Task Invocation](#55)
    4. [EKS](#56)
-
-
+      1. [EKS Node Types](#57)
+      2. [EKS Data Volumes](#58)
+   5. [AWS App Runner](#59)
 
 
    
@@ -687,27 +688,32 @@ Amazon ECS (Elastic Container Service) ECS allows you to launch Docker container
 <a name="56"></a>
 ## EKS
 
-Amazon EKS (Elastic Kubernetes Service) EKS is a managed Kubernetes service on AWS.
-• It's an alternative to ECS with a similar goal but a different API.
-• EKS supports deploying worker nodes on EC2 instances or serverless containers using Fargate.
-• It's particularly useful if your organisation already uses Kubernetes on-premises or in another cloud and wishes to migrate to AWS. Kubernetes is cloud-agnostic.
-• For multi-region deployments, you would deploy one EKS cluster per region.
-• Logs and metrics can be collected using CloudWatch Container Insights.
+Amazon EKS (Elastic Kubernetes Service) is a managed Kubernetes service on AWS.
+- It's an alternative to ECS with a similar goal but a different API.
+- EKS supports deploying worker nodes on EC2 instances or serverless containers using Fargate.
+- It's particularly useful if your organisation already uses Kubernetes on-premises or in another cloud and wishes to migrate to AWS. Kubernetes is cloud-agnostic.
+- For multi-region deployments, you would deploy one EKS cluster per region.
+- Logs and metrics can be collected using CloudWatch Container Insights.
 
-EKS Node Types:
-• Managed Node Groups: EKS creates and manages the EC2 instances (nodes) for you, as part of an ASG managed by EKS. Supports On-Demand or Spot Instances.
-• Self-Managed Nodes: You create and register the nodes to the EKS cluster and manage them with an ASG. You can use pre-built Amazon EKS Optimized AMIs. Supports On-Demand or Spot Instances.
-• AWS Fargate: No maintenance required, as no nodes are managed by you.
-EKS Data Volumes:
-• EKS requires a StorageClass manifest and leverages a Container Storage Interface (CSI) compliant driver.
-• It supports various storage solutions, including Amazon EBS, Amazon EFS (which works with Fargate), Amazon FSx for Lustre, and Amazon FSx for NetApp ONTAP.
+<a name="57"></a>
+### EKS Node Types
+- Managed Node Groups: EKS creates and manages the EC2 instances (nodes) for you, as part of an ASG managed by EKS. Supports On-Demand or Spot Instances.
+- Self-Managed Nodes: You create and register the nodes to the EKS cluster and manage them with an ASG. You can use pre-built Amazon EKS Optimized AMIs. Supports On-Demand or Spot Instances.
+- AWS Fargate: No maintenance required, as no nodes are managed by you.
 
+<a name="58"></a>
+### EKS Data Volumes:
+- EKS requires a StorageClass manifest and leverages a Container Storage Interface (CSI) compliant driver.
+- It supports various storage solutions, including Amazon EBS, Amazon EFS (which works with Fargate), Amazon FSx for Lustre, and Amazon FSx for NetApp ONTAP.
+
+<a name="59"></a>
+## AWS App Runner
 AWS App Runner App Runner is a fully managed service that simplifies the deployment of web applications and APIs at scale.
-• It requires no infrastructure experience.
-• You can start with either your source code or a container image (Docker).
-• App Runner automatically builds and deploys the web application, handling automatic scaling, high availability, load balancing, and encryption.
-• It also supports VPC access and connectivity to databases, caches, and message queues.
-• Use cases include web applications, APIs, microservices, and rapid production deployments.
+- It requires no infrastructure experience.
+- You can start with either your source code or a container image (Docker).
+- App Runner automatically builds and deploys the web application, handling automatic scaling, high availability, load balancing, and encryption.
+- It also supports VPC access and connectivity to databases, caches, and message queues.
+- Use cases include web applications, APIs, microservices, and rapid production deployments.
 
 
 
