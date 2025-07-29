@@ -597,10 +597,12 @@ Think of these architectures like different types of delivery services.
 # Containers on Cloud
 
 Docker is a software development platform that allows applications to be packaged into containers. These containers can run on any operating system, ensuring predictable behaviour and fewer compatibility issues, making applications easier to maintain and deploy. Docker is suitable for various use cases, including microservices architecture and "lift-and-shift" migrations of on-premises applications to the AWS cloud.
+
 Docker vs. Virtual Machines (VMs) While Docker is a form of virtualisation, it differs from traditional VMs. Docker containers share resources with the host operating system, enabling many containers to run on a single server. In contrast, VMs typically have their own guest operating systems, hypervisors, and applications. To get started with Docker, you typically use a Dockerfile to build an image, which then runs as a container.
 Docker Image Storage Docker images are stored in Docker Repositories. Key repositories include:
-• Docker Hub: A public repository where you can find base images for many technologies and operating systems (e.g., Ubuntu, MySQL).
-• Amazon ECR (Amazon Elastic Container Registry): AWS's own container registry, which can be private or public (Amazon ECR Public Gallery). ECR is fully integrated with Amazon ECS, backed by Amazon S3, and access is controlled via IAM. It also supports image vulnerability scanning, versioning, and lifecycle management. Images are pushed to ECR and pulled by container services.
+- Docker Hub: A public repository where you can find base images for many technologies and operating systems (e.g., Ubuntu, MySQL).
+- Amazon ECR (Amazon Elastic Container Registry): AWS's own container registry, which can be private or public (Amazon ECR Public Gallery). ECR is fully integrated with Amazon ECS, backed by Amazon S3, and access is controlled via IAM. It also supports image vulnerability scanning, versioning, and lifecycle management. Images are pushed to ECR and pulled by container services.
+
 Docker Containers Management on AWS AWS provides several services for managing Docker containers:
 • Amazon Elastic Container Service (Amazon ECS): Amazon's own container platform.
 • Amazon Elastic Kubernetes Service (Amazon EKS): Amazon's managed Kubernetes service, which is an open-source system for automating deployment, scaling, and management of containerised applications.
