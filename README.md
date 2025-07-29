@@ -55,7 +55,6 @@ In this repo, I document my understanding of AWS after getting the following cer
 
 
 
-
    
 <a name="1"></a>
 # AWS Neptune
