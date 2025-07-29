@@ -52,7 +52,12 @@ In this repo, I document my understanding of AWS after getting the following cer
        3. [Micro Services Architecture](#45)
        4. [Software Updates Offloading (Optimising Existing EC2 Application)](#46)
 3. [Containers on Cloud](#47)
+   1. [Docker Containers Management on AWS](#48)
+   2. [ECS](#49)
+   3. [EKS](#50)
 
+
+  
 
 
    
@@ -603,7 +608,8 @@ Docker Image Storage Docker images are stored in **Docker Repositories**. Key re
 - Docker Hub: A public repository where you can find base images for many technologies and operating systems (e.g., Ubuntu, MySQL).
 - Amazon ECR (Amazon Elastic Container Registry): AWS's own container registry, which can be private or public (Amazon ECR Public Gallery). ECR is fully integrated with Amazon ECS, backed by Amazon S3, and access is controlled via IAM. It also supports image vulnerability scanning, versioning, and lifecycle management. Images are pushed to ECR and pulled by container services.
 
-Docker Containers Management on AWS 
+<a name="48"></a>
+## Docker Containers Management on AWS 
 
 AWS provides several services for managing Docker containers:
 - Amazon Elastic Container Service (Amazon ECS): Amazon's own container platform.
@@ -611,6 +617,8 @@ AWS provides several services for managing Docker containers:
 - AWS Fargate: Amazon's serverless container platform that works with both ECS and EKS.
 - Amazon ECR: Used to store container images.
 
+<a name="49"></a>
+## ECS  
 Amazon ECS (Elastic Container Service) ECS allows you to launch Docker containers on AWS by launching ECS Tasks on ECS Clusters. It offers two main launch types:
 - EC2 Launch Type:
     - You are responsible for provisioning and maintaining the underlying EC2 instances (infrastructure).
@@ -655,6 +663,9 @@ ECS Task Invocation:
 • ECS tasks can be invoked by Amazon EventBridge, either in response to events (e.g., S3 object upload) or on a schedule (e.g., for batch processing).
 • Tasks can also poll messages from an SQS Queue.
 • EventBridge can also be used to intercept events when ECS tasks stop, allowing for notifications or automated actions.
+
+<a name="50"></a>
+## EKS
 
 Amazon EKS (Elastic Kubernetes Service) EKS is a managed Kubernetes service on AWS.
 • It's an alternative to ECS with a similar goal but a different API.
