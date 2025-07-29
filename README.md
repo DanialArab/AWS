@@ -54,10 +54,15 @@ In this repo, I document my understanding of AWS after getting the following cer
 3. [Containers on Cloud](#47)
    1. [Docker Containers Management on AWS](#48)
    2. [ECS](#49)
-   3. [EKS](#50)
+      1. [IAM Roles for ECS](#50)
+      2. [ECS Load Balancer Integrations](#51)
+      3. [ECS Data Volumes (EFS)](#52)
+      4. [ECS Service Auto Scaling](#53)
+      5. [EC2 Launch Type – Auto Scaling EC2 Instances](#54)
+      6. [ECS Task Invocation](#55)
+   4. [EKS](#56)
 
 
-  
 
 
    
@@ -629,42 +634,52 @@ Amazon ECS (Elastic Container Service) ECS allows you to launch Docker container
      - You simply define task definitions, and AWS runs ECS Tasks based on your specified CPU and RAM requirements.
      - Scaling is simplified by increasing the number of tasks.
 
-IAM Roles for ECS:
+<a name="50"></a>
+### IAM Roles for ECS
 
 - EC2 Instance Profile (for EC2 Launch Type only): Used by the ECS agent for API calls to the ECS service, sending logs to CloudWatch Logs, pulling Docker images from ECR, and referencing sensitive data in Secrets Manager or SSM Parameter Store.
 - ECS Task Role: Allows each task to have its own specific permissions, defined in the task definition, enabling different ECS services to use different roles.
 
-Load Balancer Integrations:
+<a name="51"></a>
+### ECS Load Balancer Integrations
 
 - Application Load Balancer (ALB) is supported for most use cases.
-- Network Load Balancer (NLB) is recommended for high throughput/performance or when paired with AWS PrivateLink.
+- Network Load Balancer (NLB) is recommended only for high throughput/performance or when paired with AWS PrivateLink.
 - Classic Load Balancer (CLB) is supported but not recommended, lacking advanced features and Fargate compatibility.
 
-Data Volumes (EFS):
-• You can mount Amazon EFS (Elastic File System) file systems onto ECS tasks, which works for both EC2 and Fargate launch types.
-• Tasks in any Availability Zone can share the same data in the EFS file system.
-• Combining Fargate with EFS provides a serverless solution for persistent, multi-AZ shared storage. Note that Amazon S3 cannot be mounted as a file system.
+<a name="52"></a>
+### ECS Data Volumes (EFS)
 
-ECS Service Auto Scaling:
-• Automatically increases or decreases the desired number of ECS tasks.
-• Uses AWS Application Auto Scaling and can scale based on metrics such as:
-    ◦ ECS Service Average CPU Utilisation.
-    ◦ ECS Service Average Memory Utilisation.
-    ◦ ALB Request Count Per Target.
-• Scaling policies include Target Tracking (based on a target value for a CloudWatch metric), Step Scaling (based on a CloudWatch Alarm), and Scheduled Scaling (for predictable changes at specific dates/times).
-• ECS Service Auto Scaling (task level) is distinct from EC2 Auto Scaling (EC2 instance level). Fargate Auto Scaling is simpler due to its serverless nature.
+- You can mount Amazon EFS (Elastic File System) file systems onto ECS tasks, which works for both EC2 and Fargate launch types.
+- Tasks in any Availability Zone can share the same data in the EFS file system.
+- Combining Fargate with EFS provides a serverless solution for persistent, multi-AZ shared storage. Note that Amazon S3 cannot be mounted as a file system.
 
-EC2 Launch Type – Auto Scaling EC2 Instances:
-• To accommodate ECS Service Scaling, you can add underlying EC2 instances.
-• This is achieved through Auto Scaling Group (ASG) Scaling (e.g., based on CPU utilisation).
-• Alternatively, an ECS Cluster Capacity Provider can automatically provision and scale the infrastructure (EC2 instances) for your ECS Tasks by adding EC2 instances when capacity (CPU, RAM) is low.
+<a name="53"></a>
+### ECS Service Auto Scaling
 
-ECS Task Invocation:
-• ECS tasks can be invoked by Amazon EventBridge, either in response to events (e.g., S3 object upload) or on a schedule (e.g., for batch processing).
-• Tasks can also poll messages from an SQS Queue.
-• EventBridge can also be used to intercept events when ECS tasks stop, allowing for notifications or automated actions.
+- Automatically increases or decreases the desired number of ECS tasks.
+- Uses AWS Application Auto Scaling and can scale based on metrics such as:
+   - ECS Service Average CPU Utilisation.
+   - ECS Service Average Memory Utilisation.
+   - ALB Request Count Per Target.
+- Scaling policies include Target Tracking (based on a target value for a CloudWatch metric), Step Scaling (based on a CloudWatch Alarm), and Scheduled Scaling (for predictable changes at specific dates/times).
+- ECS Service Auto Scaling (task level) is distinct from EC2 Auto Scaling (EC2 instance level). Fargate Auto Scaling is simpler due to its serverless nature.
 
-<a name="50"></a>
+<a name="54"></a>
+### EC2 Launch Type – Auto Scaling EC2 Instances
+
+- To accommodate ECS Service Scaling, you can add underlying EC2 instances
+- This is achieved through Auto Scaling Group (ASG) Scaling (e.g., based on CPU utilisation).
+- Alternatively, an ECS Cluster Capacity Provider can automatically provision and scale the infrastructure (EC2 instances) for your ECS Tasks by adding EC2 instances when capacity (CPU, RAM) is low.
+
+<a name="55"></a>
+### ECS Task Invocation
+
+- ECS tasks can be invoked by Amazon EventBridge, either in response to events (e.g., S3 object upload) or on a schedule (e.g., for batch processing).
+- Tasks can also poll messages from an SQS Queue.
+- EventBridge can also be used to intercept events when ECS tasks stop, allowing for notifications or automated actions.
+
+<a name="56"></a>
 ## EKS
 
 Amazon EKS (Elastic Kubernetes Service) EKS is a managed Kubernetes service on AWS.
