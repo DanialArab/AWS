@@ -64,8 +64,7 @@ In this repo, I document my understanding of AWS after getting the following cer
       1. [EKS Node Types](#57)
       2. [EKS Data Volumes](#58)
    5. [AWS App Runner](#59)
-
-
+4. [Amazon Route 53](#69)
    
 <a name="1"></a>
 # AWS Neptune
@@ -715,6 +714,10 @@ AWS App Runner App Runner is a fully managed service that simplifies the deploym
 - It also supports VPC access and connectivity to databases, caches, and message queues.
 - Use cases include web applications, APIs, microservices, and rapid production deployments.
 
+<a name="60"></a>
+# Amazon Route 53
+
+here
 
 
 **Reference:**
