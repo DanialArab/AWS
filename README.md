@@ -661,10 +661,14 @@ Amazon ECS (Elastic Container Service) ECS allows you to launch Docker container
 - Automatically increases or decreases the desired number of ECS tasks.
 - Uses AWS Application Auto Scaling and can scale based on metrics such as:
    - ECS Service Average CPU Utilisation.
-   - ECS Service Average Memory Utilisation.
-   - ALB Request Count Per Target.
-- Scaling policies include Target Tracking (based on a target value for a CloudWatch metric), Step Scaling (based on a CloudWatch Alarm), and Scheduled Scaling (for predictable changes at specific dates/times).
-- ECS Service Auto Scaling (task level) is distinct from EC2 Auto Scaling (EC2 instance level). Fargate Auto Scaling is simpler due to its serverless nature.
+   - ECS Service Average Memory Utilization - Scale on RAM
+   - ALB Request Count Per Target – metric coming from the ALB
+- Scaling policies include
+     - **Target Tracking** (based on a target value for a specific CloudWatch metric),
+     - **Step Scaling** (based on a specific CloudWatch Alarm), and
+     - **Scheduled Scaling** (for predictable changes at specific dates/times).
+- **ECS Service Auto Scaling (task level) is distinct from EC2 Auto Scaling (EC2 instance level)**.
+- Fargate Auto Scaling is simpler due to its serverless nature.
 
 <a name="54"></a>
 ### EC2 Launch Type – Auto Scaling EC2 Instances
