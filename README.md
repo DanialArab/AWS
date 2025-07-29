@@ -652,7 +652,8 @@ Amazon ECS (Elastic Container Service) ECS allows you to launch Docker container
 
 - You can mount Amazon EFS (Elastic File System) file systems onto ECS tasks, which works for both EC2 and Fargate launch types.
 - Tasks in any Availability Zone can share the same data in the EFS file system.
-- Combining Fargate with EFS provides a serverless solution for persistent, multi-AZ shared storage. Note that Amazon S3 cannot be mounted as a file system.
+- Combining Fargate with EFS provides a serverless solution for persistent, multi-AZ shared storage.
+- Note that Amazon S3 cannot be mounted as a file system.
 
 <a name="53"></a>
 ### ECS Service Auto Scaling
