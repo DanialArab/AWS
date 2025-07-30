@@ -64,7 +64,7 @@ In this repo, I document my understanding of AWS after getting the following cer
       1. [EKS Node Types](#57)
       2. [EKS Data Volumes](#58)
    5. [AWS App Runner](#59)
-4. [Amazon Route 53](#69)
+4. [Amazon Route 53](#60)
    
 <a name="1"></a>
 # AWS Neptune
