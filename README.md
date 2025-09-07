@@ -1,4 +1,4 @@
-# Amazon Web Services 
+# Amazon Web Services
  
 In this repo, I document my understanding of AWS after getting the following certificates:
 - **<a href="https://www.credly.com/badges/75349987-1f49-41cf-a155-34f9fd018499/linked_in?t=sv9uqx">AWS Solution Architect Associate</a>** Date obtained: March 24, 2025 Expires: March 24, 2028
